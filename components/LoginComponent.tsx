@@ -51,10 +51,12 @@ const LoginComponent = () => {
       />
 
       {errorMessage ? (
-        <Text className="text-red-500 mb-4">{errorMessage}</Text>
+        <Text className="text-red-500 mb-4 flex justify-center">
+          {errorMessage}
+        </Text>
       ) : null}
 
-      <View className="flex items-end">
+      <View className="flex items-center">
         <TouchableOpacity
           className="text-blue-800 mb-4 underline"
           onPress={handlePasswordResetButtonPress}
