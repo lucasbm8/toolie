@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import { Link } from "expo-router";
 
 const LoginComponent = () => {
   const [email, setEmail] = React.useState("");
@@ -45,12 +46,14 @@ const LoginComponent = () => {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity
-        className="bg-blue-500  py-3 rounded-2xl mb-4 border border-gray-700"
-        onPress={handleLogin}
-      >
-        <Text className="text-center text-white font-bold">Entrar</Text>
-      </TouchableOpacity>
+      <Link href="/about" className="flex">
+        <TouchableOpacity
+          className="bg-blue-500 py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
+          onPress={handleLogin}
+        >
+          <Text className="text-center text-white font-bold">Entrar</Text>
+        </TouchableOpacity>
+      </Link>
 
       <TouchableOpacity
         className="bg-white border  text-gray-600 border-gray-700 py-3 rounded-2xl mb-4 flex flex-row items-center justify-center"
