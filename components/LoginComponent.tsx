@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
-import { Link } from "expo-router";
+// import { Link } from "expo-router";
+// import ProductDetailsPage from "@/app/productDetails";
 
 const LoginComponent = () => {
   const [email, setEmail] = useState("");
@@ -15,12 +16,11 @@ const LoginComponent = () => {
   const handleLogin = () => {
     const validEmail = "user"; // E-mail específico
     const validPassword = "pass"; // Senha específica
-
     if (email === validEmail && password === validPassword) {
       setErrorMessage("");
       setEmail("");
       setPassword("");
-      router.push("/about"); // Navega para a página "/about"
+      router.push("/productDetails"); // Navega para a página de detalhes do produto
     } else {
       setErrorMessage("E-mail ou senha incorretos");
     }
