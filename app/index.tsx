@@ -1,5 +1,6 @@
 import { Text, View, Image } from "react-native";
 import { Link } from "expo-router";
+import LoginComponent from "@/components/LoginComponent";
 
 const logo = require("../assets/images/logo2.png");
 
@@ -14,11 +15,13 @@ export default function Index() {
       }}
     >
       {/* Imagem com tamanho reduzido */}
-      <Image source={logo} className="w-48 h-48 object-contain  mb-5" />
+      <Image source={logo} style={{ width: 300, height: 300 }} />
 
-      <Text className="font-inter color-white">
+      {/* <Text className="font-inter color-white">
         Edit app/index.tsx to edit this screen.
-      </Text>
+      </Text> */}
+
+      <LoginComponent />
 
       <Link
         href="/about"
