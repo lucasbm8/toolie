@@ -23,12 +23,12 @@ export default function Index() {
 
       <LoginComponent />
 
-      <Link
+      {/* <Link
         href="/about"
         className=" font-inter mt-4 px-4 py-2 bg-white rounded text-blue-500"
       >
         Go to About screen
-      </Link>
+      </Link> */}
     </View>
   );
 }
