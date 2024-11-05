@@ -2,7 +2,7 @@ import { Text, View, Image } from "react-native";
 import { Link } from "expo-router";
 import LoginComponent from "@/components/LoginComponent";
 
-const logo = require("../assets/images/logo2.png");
+const logo = require("../assets/images/logo.png");
 
 export default function Index() {
   return (
@@ -12,6 +12,7 @@ export default function Index() {
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "#53A3FA", // Cor de fundo definida aqui
+        padding: 15,
       }}
     >
       {/* Imagem com tamanho reduzido */}

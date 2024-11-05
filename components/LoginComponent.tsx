@@ -36,30 +36,34 @@ const LoginComponent = () => {
         value={password}
         onChangeText={setPassword}
       />
+      <View className="flex items-end">
+        <TouchableOpacity
+          className="text-blue-800 mb-4 underline"
+          onPress={handlePasswordResetButtonPress}
+        >
+          <Text>Esqueceu sua senha?</Text>
+        </TouchableOpacity>
+      </View>
+
       <TouchableOpacity
-        className={`flex justify-end ${
-          isPasswordResetButtonPressed ? "text-blue-950" : "text-blue-500"
-        } mb-4 underline`}
-        onPress={handlePasswordResetButtonPress}
-      >
-        <Text>Esqueceu sua senha?</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        className="bg-blue-500 text-white py-3 rounded-2xl mb-4 "
+        className="bg-blue-500  py-3 rounded-2xl mb-4 border border-gray-700"
         onPress={handleLogin}
       >
-        <Text className="text-center font-bold ">Entrar</Text>
+        <Text className="text-center text-white font-bold">Entrar</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
-        className="bg-white border border-gray-300 text-gray-600 py-3 rounded-md mb-4 flex flex-row items-center justify-center"
+        className="bg-white border  text-gray-600 border-gray-700 py-3 rounded-2xl mb-4 flex flex-row items-center justify-center"
         onPress={handleGoogleLogin}
       >
-        <FontAwesome name="google" size={24} color="#D64444" className="mr-2" />
-        <Text className="font-bold">Continuar com Google</Text>
+        <FontAwesome name="google" size={24} color="#DB4437" className="mr-2" />
+        <Text className="font-inter font-bold ">Continuar com Google</Text>
       </TouchableOpacity>
-      <Text className="text-center font-bold">
+      <Text className="text-center p-4">
         Não tem conta?{" "}
-        <Text className="text-blue-800 underline">Cadastre-se</Text>
+        <TouchableOpacity className="text-blue-900 mb-4 underline">
+          Cadastre-se
+        </TouchableOpacity>
       </Text>
     </View>
   );
