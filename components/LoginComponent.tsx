@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 // import { Link } from "expo-router";
 // import ProductDetailsPage from "@/app/productDetails";
@@ -20,7 +20,7 @@ const LoginComponent = () => {
       setErrorMessage("");
       setEmail("");
       setPassword("");
-      router.push("/productDetails"); // Navega para a página de detalhes do produto
+      <Link href="/productDetails">Navega para a página de detalhes do produto</Link>
     } else {
       setErrorMessage("E-mail ou senha incorretos");
     }
