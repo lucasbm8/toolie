@@ -20,7 +20,7 @@ const LoginComponent = () => {
       setErrorMessage("");
       setEmail("");
       setPassword("");
-      <Link href="/productDetails">Navega para a página de detalhes do produto</Link>
+      router.push("/productDetails"); // Navega para a página de detalhes do produto
     } else {
       setErrorMessage("E-mail ou senha incorretos");
     }
