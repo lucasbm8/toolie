@@ -20,7 +20,7 @@ const LoginComponent = () => {
         setErrorMessage("");
         setEmail("");
         setPassword("");
-        router.push("/searchTool"); // Navega para a nova tela
+        router.push("/searchTool2"); // Navega para a nova tela
       } else {
         setErrorMessage("E-mail ou senha incorretos");
       }
