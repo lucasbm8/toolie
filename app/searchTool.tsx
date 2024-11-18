@@ -32,6 +32,7 @@ const SearchTool: React.FC = () => {
       setLoading(true);
       setError(null);
       const response = await fetch('https://toolie-back-end.onrender.com/api/v1/ferramentas');
+      console.log(response);
       
       if (!response.ok) {
         throw new Error('Erro ao buscar ferramentas');
