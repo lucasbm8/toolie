@@ -13,6 +13,10 @@ export default function RootLayout() {
         name="productDetails"
         options={{ title: "product-details" }}
       />
+       <Stack.Screen
+        name="searchTool"
+        options={{ title: "Search Tool" }}
+      />
     </Stack>
   );
 }

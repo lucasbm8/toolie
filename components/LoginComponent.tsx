@@ -13,18 +13,19 @@ const LoginComponent = () => {
   const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] =
     useState(false);
 
-  const handleLogin = () => {
-    const validEmail = "user"; // E-mail específico
-    const validPassword = "pass"; // Senha específica
-    if (email === validEmail && password === validPassword) {
-      setErrorMessage("");
-      setEmail("");
-      setPassword("");
-      router.push("/productDetails"); // Navega para a página de detalhes do produto
-    } else {
-      setErrorMessage("E-mail ou senha incorretos");
-    }
-  };
+    const handleLogin = () => {
+      const validEmail = "user"; // E-mail específico
+      const validPassword = "pass"; // Senha específica
+      if (email === validEmail && password === validPassword) {
+        setErrorMessage("");
+        setEmail("");
+        setPassword("");
+        router.push("/searchTool"); // Navega para a nova tela
+      } else {
+        setErrorMessage("E-mail ou senha incorretos");
+      }
+    };
+    
 
   const handleGoogleLogin = () => {
     // Implementar login com o Google posteriormente
