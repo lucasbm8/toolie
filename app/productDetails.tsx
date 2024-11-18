@@ -57,7 +57,7 @@ const ProductDetailsPage = () => {
 
       {/* Botões de ação */}
       <View className="px-6 py-4 flex-row space-x-4">
-        <TouchableOpacity className="bg-blue-500 flex-1 py-3 rounded-2xl">
+        <TouchableOpacity className="bg-secondary flex-1 py-3 rounded-2xl">
           <Text className="text-center text-white font-bold">
             Adicionar ao carrinho
           </Text>

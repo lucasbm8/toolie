@@ -61,12 +61,12 @@ const LoginComponent = () => {
           className="text-blue-800 mb-4 underline"
           onPress={handlePasswordResetButtonPress}
         >
-          <Text>Esqueceu sua senha?</Text>
+          <Text className="font-inter" >Esqueceu sua senha?</Text>
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity
-        className="bg-blue-500 py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
+        className="bg-secondary-alt py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
         onPress={handleLogin}
       >
         <Text className="text-center text-white font-bold">Entrar</Text>
