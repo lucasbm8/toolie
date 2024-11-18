@@ -21,6 +21,10 @@ export default function RootLayout() {
         name="searchTool2"
         options={{ title: "Search Tool" }}
       />
+      <Stack.Screen
+        name="feedScreen"
+        options={{ title: "Feed" }}
+      />
     </Stack>
   );
 }
