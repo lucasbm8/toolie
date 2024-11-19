@@ -3,6 +3,7 @@ import { View, Text, TextInput, FlatList, ActivityIndicator, TouchableOpacity, I
 
 // Importando o JSON local
 import toolsData from './../assets/data.json';
+import { router } from 'expo-router';
 
 // Interface para a estrutura exata da sua API
 interface Tool {
@@ -107,6 +108,9 @@ const SearchTool: React.FC = () => {
 
   const handleToolPress = (tool: Tool): void => {
     console.log('Tool selected:', tool);
+    router.push("/productDetails");
+
+
     // Adicione aqui a navegação para a tela de detalhes da ferramenta
   };
 
