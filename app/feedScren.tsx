@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
-import { useRouter, Link } from "expo-router";
+import { useRouter, useLocalSearchParams  } from "expo-router";
 
+const params = useLocalSearchParams();
+const userId = params.id;
 
 const FeedScreen = () => {
     const router = useRouter(); // Usando o hook useRouter para navegação
@@ -9,6 +11,7 @@ const FeedScreen = () => {
     // Função para redirecionar para a página de busca
     const handleCardPress = () => {
       router.push('/searchTool2');
+      console.log("userId: ", userId);
     };
   
     return (

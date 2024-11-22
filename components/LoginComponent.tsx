@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter, Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
+import users from "../assets/dataUser.json";// N
 // import { Link } from "expo-router";
 // import ProductDetailsPage from "@/app/productDetails";
 
@@ -14,13 +15,20 @@ const LoginComponent = () => {
     useState(false);
 
     const handleLogin = () => {
-      const validEmail = "user"; // E-mail específico
-      const validPassword = "pass"; // Senha específica
-      if (email === validEmail && password === validPassword) {
+      console.log("entrou com e email valendo: ", email);
+      const user = users.find((u) => u.email === email);
+  
+      if (user) {
         setErrorMessage("");
         setEmail("");
         setPassword("");
-        router.push("/feedScren"); // Navega para a nova tela
+  
+        // Redireciona para a tela baseada na flag do usuário
+        if (user.flagLocatario) {
+          router.push("/feedScren");
+        } else if (user.flagLocador) {
+          // router.push("/locatarioScreen");
+        }
       } else {
         setErrorMessage("E-mail ou senha incorretos");
       }
@@ -35,6 +43,7 @@ const LoginComponent = () => {
     setIsPasswordResetButtonPressed(!isPasswordResetButtonPressed);
   };
 
+  
   return (
     <View className="p-6 rounded-lg w-full max-w-md">
       <TextInput
@@ -57,15 +66,6 @@ const LoginComponent = () => {
         </Text>
       ) : null}
 
-      <View className="flex items-center">
-        <TouchableOpacity
-          className="text-blue-800 mb-4 underline"
-          onPress={handlePasswordResetButtonPress}
-        >
-          <Text className="font-inter" >Esqueceu sua senha?</Text>
-        </TouchableOpacity>
-      </View>
-
       <TouchableOpacity
         className="bg-secondary-alt py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
         onPress={handleLogin}
@@ -83,8 +83,8 @@ const LoginComponent = () => {
 
       <Text className="text-center p-4">
         Não tem conta?{" "}
-        <TouchableOpacity className="text-blue-900 mb-4 underline">
-          <Text>Cadastre-se</Text>
+        <TouchableOpacity>
+          <Text className="text-blue-900 underline">Cadastre-se</Text>
         </TouchableOpacity>
       </Text>
     </View>

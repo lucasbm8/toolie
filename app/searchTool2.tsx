@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 
 // Importando o JSON local
-import toolsData from './../assets/data.json';
+import toolsData from './../assets/dataFerramentas.json';
 import { router } from 'expo-router';
 
 // Interface para a estrutura exata da sua API
