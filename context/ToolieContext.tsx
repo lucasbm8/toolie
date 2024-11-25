@@ -1,5 +1,3 @@
-
-
 import React, { ReactNode, useState } from "react";
 
 interface ToolieContextProps {
@@ -12,7 +10,9 @@ interface ToolieContextProps {
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const ToolieContext = React.createContext<ToolieContextProps | undefined>(undefined);
+export const ToolieContext = React.createContext<
+  ToolieContextProps | undefined
+>(undefined);
 
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<Set<number>>(new Set());
@@ -30,7 +30,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         username,
         setUsername,
         isAuthenticated,
-        setIsAuthenticated
+        setIsAuthenticated,
       }}
     >
       {children}
