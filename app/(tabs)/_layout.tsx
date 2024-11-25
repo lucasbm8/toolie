@@ -2,6 +2,8 @@
 import { Tabs } from "expo-router/tabs";
 import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
+//essa é a versão para trabalhar
+
 
 export default function TabsLayout() {
   return (
