@@ -11,9 +11,14 @@ interface ToolieContextProps {
 }
 
 // Cria o contexto com um valor inicial padrão
-export const ToolieContext = React.createContext<
-  ToolieContextProps | undefined
->(undefined);
+export const ToolieContext = React.createContext<ToolieContextProps>({
+  cart: new Set(),
+  setCart: () => {},
+  address: "",
+  setAddress: () => {},
+  username: "",
+  setUsername: () => {},
+});
 
 // Componente Provider
 export const ContextProvider = ({ children }: { children: ReactNode }) => {
