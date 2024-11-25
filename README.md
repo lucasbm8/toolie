@@ -2,7 +2,9 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
-Clonar o repositorio em algum lugar, acesssar o diretorio e rodar
+Tenha certeza de ter instalado o node versão 22.11.0
+
+Clonar o repositorio em algum lugar do seu pc e rodar.
 
 ## Get started
 
