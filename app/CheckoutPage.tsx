@@ -230,15 +230,16 @@ const CheckoutPage: React.FC = () => {
         </View>
       </View>
 
-      {/* Botão de Confirmar Aluguel */}
-      <TouchableOpacity
-        className="bg-blue-600 w-full p-4 rounded-lg absolute bottom-10"
-        onPress={handleConfirmRental}
-      >
-        <Text className="text-white text-center font-semibold">
-          Confirmar Aluguel
-        </Text>
-      </TouchableOpacity>
+      <View className="border-t border-gray-200 bg-white p-4">
+        <TouchableOpacity
+         
+         
+        >
+          <Text className="text-blue text-center font-bold text-lg">
+            Confirmar Aluguel
+          </Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
