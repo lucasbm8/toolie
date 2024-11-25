@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter, Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
-import users from "../assets/dataUser.json";// N
+import users from "../assets/dataUser.json"; // N
 // import { Link } from "expo-router";
 // import ProductDetailsPage from "@/app/productDetails";
 
@@ -14,26 +14,25 @@ const LoginComponent = () => {
   const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] =
     useState(false);
 
-    const handleLogin = () => {
-      console.log("entrou com e email valendo: ", email);
-      const user = users.find((u) => u.email === email);
-  
-      if (user) {
-        setErrorMessage("");
-        setEmail("");
-        setPassword("");
-  
-        // Redireciona para a tela baseada na flag do usuário
-        if (user.flagLocatario) {
-          router.push("/feedScren");
-        } else if (user.flagLocador) {
-          // router.push("/locatarioScreen");
-        }
-      } else {
-        setErrorMessage("E-mail ou senha incorretos");
+  const handleLogin = () => {
+    console.log("entrou com e email valendo: ", email);
+    const user = users.find((u) => u.email === email);
+
+    if (user) {
+      setErrorMessage("");
+      setEmail("");
+      setPassword("");
+
+      // Redireciona para a tela baseada na flag do usuário
+      if (user.flagLocatario) {
+        router.push("/feedScreen");
+      } else if (user.flagLocador) {
+        // router.push("/locatarioScreen");
       }
-    };
-    
+    } else {
+      setErrorMessage("E-mail ou senha incorretos");
+    }
+  };
 
   const handleGoogleLogin = () => {
     // Implementar login com o Google posteriormente
@@ -43,7 +42,6 @@ const LoginComponent = () => {
     setIsPasswordResetButtonPressed(!isPasswordResetButtonPressed);
   };
 
-  
   return (
     <View className="p-6 rounded-lg w-full max-w-md">
       <TextInput
