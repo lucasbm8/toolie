@@ -1,24 +1,39 @@
 import { Stack } from "expo-router";
 import "../global.css";
 import ContextProvider from "@/context/ToolieContext";
+import { ToolieContext } from "@/context/ToolieContext";
+import React, { useContext } from "react";
+import { Tabs } from "expo-router/tabs";
 
 export default function RootLayout() {
+  const toolieContext = useContext(ToolieContext);
+  const username = toolieContext?.username || "";
+
+  if (username === "") {
+    return (
+      <ContextProvider>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{ title: "Login", headerShown: false }}
+          />
+        </Stack>
+      </ContextProvider>
+    );
+  }
+
   return (
     <ContextProvider>
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ title: "Login", headerShown: false }}
+      <Tabs>
+        <Tabs.Screen
+          name="feedScreen"
+          options={{ title: "Feed", headerShown: false }}
         />
-        <Stack.Screen name="about" options={{ title: "About" }} />
-        <Stack.Screen
-          name="productDetails"
-          options={{ title: "product-details" }}
+        <Tabs.Screen
+          name="CartPage"
+          options={{ title: "Cart", headerShown: false }}
         />
-        <Stack.Screen name="searchTool" options={{ title: "Search Tool" }} />
-        <Stack.Screen name="searchTool2" options={{ title: "Search Tool" }} />
-        <Stack.Screen name="feedScreen" options={{ title: "Feed" }} />
-      </Stack>
+      </Tabs>
     </ContextProvider>
   );
 }
