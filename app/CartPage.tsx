@@ -164,6 +164,7 @@ const CartPage: React.FC = () => {
 
           <View className="flex-row items-center mb-4">
             <RadioButton
+              color="#53A3FA"
               value="retirar"
               status={deliveryType === "retirar" ? "checked" : "unchecked"}
               onPress={() => handleDeliveryChange("retirar")}
@@ -173,6 +174,7 @@ const CartPage: React.FC = () => {
 
           <View className="flex-row items-center mb-4">
             <RadioButton
+              color="#53A3FA"
               value="amanha"
               status={deliveryType === "amanha" ? "checked" : "unchecked"}
               onPress={() => handleDeliveryChange("amanha")}
