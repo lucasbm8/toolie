@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter, Link } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import users from "../assets/dataUser.json"; // N
 // import { Link } from "expo-router";
 // import ProductDetailsPage from "@/app/productDetails";
+import { ToolieContext } from "@/context/ToolieContext";
 
 const LoginComponent = () => {
-  const [email, setEmail] = useState("");
+  const toolieContext = useContext(ToolieContext);
+  if (!toolieContext) {
+    throw new Error("useContext must be used within a ContextProvider");
+  }
+  const { username, setUsername } = toolieContext;
+
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
@@ -15,12 +21,12 @@ const LoginComponent = () => {
     useState(false);
 
   const handleLogin = () => {
-    console.log("entrou com e email valendo: ", email);
-    const user = users.find((u) => u.email === email);
+    console.log("entrou com e email valendo: ", username);
+    const user = users.find((u) => u.email === username);
 
     if (user) {
       setErrorMessage("");
-      setEmail("");
+      setUsername("");
       setPassword("");
 
       // Redireciona para a tela baseada na flag do usuário
@@ -47,8 +53,8 @@ const LoginComponent = () => {
       <TextInput
         className="border bg-white border-gray-700 rounded-2xl px-4 py-2 mb-4"
         placeholder="Insira seu e-mail"
-        value={email}
-        onChangeText={setEmail}
+        value={username}
+        onChangeText={setUsername}
       />
       <TextInput
         className="border bg-white border-gray-700 rounded-2xl px-4 py-2 mb-4"
