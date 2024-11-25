@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect, useContext } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  FlatList,
+  ActivityIndicator,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { ToolieContext } from "@/context/ToolieContext";
 
 // Importando o JSON local
-import toolsData from './../assets/dataFerramentas.json';
-import { router } from 'expo-router';
+import toolsData from "./../assets/dataFerramentas.json";
+import { router } from "expo-router";
 
 // Interface para a estrutura exata da sua API
 interface Tool {
@@ -26,99 +35,100 @@ interface RenderToolItemProps {
 
 const SearchTool: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const { cart, setCart } = useContext(ToolieContext);
 
   // Simula o fetch com dados locais
   useEffect(() => {
     setTools(toolsData);
   }, []);
 
-  const filteredTools = tools.filter(tool =>
-    tool.tipoFerramenta.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tool.descricao.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    tool.localizacao.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredTools = tools.filter(
+    (tool) =>
+      tool.tipoFerramenta.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.descricao.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      tool.localizacao.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const formatPrice = (price: number): string => {
-    return price.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
+    return price.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
     });
   };
+  const handleCartPress = (id: number) => {
+    const isInCart = cart.has(id);
 
-  const renderToolItem = ({ item }: RenderToolItemProps) => (
-    <TouchableOpacity 
-      className="bg-white p-4 mb-4 rounded-lg shadow-md"
-      onPress={() => handleToolPress(item)}
-    >
-      {item.fotosURL && item.fotosURL.length > 0 && (
-        <Image
-          source={{ uri: item.fotosURL[0] }}
-          className="w-full h-48 rounded-lg mb-3"
-          resizeMode="cover"
-        />
-      )}
-      
-      <View className="flex-row justify-between items-start">
-        <View className="flex-1">
-          <Text className="text-xl font-bold text-gray-800">{item.tipoFerramenta}</Text>
-          <Text className="text-gray-600 mt-1">{item.descricao}</Text>
-        </View>
-        <View className="bg-blue-500 px-3 py-1 rounded">
-          <Text className="text-white font-bold">
-            {formatPrice(item.precoAluguel)}/dia
-          </Text>
-        </View>
-      </View>
+    if (isInCart) {
+      // Remove o item do carrinho
+      setCart((prevCart: Iterable<unknown> | null | undefined) => {
+        const newCart = new Set(prevCart); // Cria um novo Set baseado no anterior
+        newCart.delete(id); // Remove o item
+        return newCart; // Atualiza o estado
+      });
+      console.log(`Item removido do carrinho: ${id}`);
+    } else {
+      // Adiciona o item ao carrinho
+      setCart((prevCart: Iterable<unknown> | null | undefined) => {
+        const newCart = new Set(prevCart); // Cria um novo Set baseado no anterior
+        newCart.add(id); // Adiciona o item
+        return newCart; // Atualiza o estado
+      });
+      console.log(`Item adicionado ao carrinho: ${id}`);
+    }
+  };
 
-      <View className="mt-3">
-        <View className="flex-row items-center mt-2">
-          <Text className="text-gray-700 font-semibold">Local:</Text>
-          <Text className="text-gray-600 ml-2">{item.localizacao}</Text>
-        </View>
+  const renderToolItem = ({ item }: RenderToolItemProps) => {
+    const isInCart = cart.has(item.id); // Verifica se o item está no carrinho
 
-        <View className="flex-row flex-wrap mt-2">
-          <View className={`px-2 py-1 rounded mr-2 mb-1 ${
-            item.disponibilidade === 'Disponível' ? 'bg-green-100' : 'bg-red-100'
-          }`}>
-            <Text className={`${
-              item.disponibilidade === 'Disponível' ? 'text-green-800' : 'text-red-800'
-            } text-sm`}>
-              {item.disponibilidade}
+    return (
+      <View className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm">
+        {item.fotosURL && item.fotosURL.length > 0 && (
+          <Image
+            source={{ uri: item.fotosURL[0] }}
+            className="w-full h-48 rounded-lg mb-3"
+            resizeMode="cover"
+          />
+        )}
+
+        <View className="flex-row justify-between items-start">
+          <View className="flex-1">
+            <Text className="text-xl font-bold text-gray-800">
+              {item.tipoFerramenta}
+            </Text>
+            <Text className="text-gray-600 mt-1">{item.descricao}</Text>
+          </View>
+          <View className="bg-blue-500 px-3 py-1 rounded">
+            <Text className="text-black font-bold">
+              {formatPrice(item.precoAluguel)}/dia
             </Text>
           </View>
-          <View className="bg-gray-100 px-2 py-1 rounded mr-2 mb-1">
-            <Text className="text-gray-800 text-sm">{item.estadoDeUso}</Text>
-          </View>
         </View>
 
-        <View className="mt-2">
-          <Text className="text-gray-700 text-sm">
-            <Text className="font-semibold">Entrega: </Text>
-            {item.opcoesDeEntrega}
-          </Text>
-          <Text className="text-gray-700 text-sm">
-            <Text className="font-semibold">Estado: </Text>
-            {item.condicoesDeUso}
-          </Text>
+        <View className="mt-3">
+          <TouchableOpacity
+            className={`bg-secondary flex-1 py-3 rounded-2xl mt-3 ${
+              isInCart ? "bg-red-500" : "bg-green-500"
+            }`}
+            onPress={() => handleCartPress(item.id)}
+          >
+            <Text className="text-center text-white font-bold">
+              {isInCart ? "Remover do carrinho" : "Adicionar ao carrinho"}
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
-    </TouchableOpacity>
-  );
-
-  const handleToolPress = (tool: Tool): void => {
-    console.log('Tool selected:', tool);
-    router.push("/productDetails");
-
-
-    // Adicione aqui a navegação para a tela de detalhes da ferramenta
+    );
   };
 
   return (
     <View className="flex-1 bg-gray-100">
       {/* Header e Barra de Busca */}
       <View className="bg-white p-4 shadow-sm">
-        <Text className="text-2xl font-bold text-gray-800 mb-4">Ferramentas</Text>
+        <Text className="text-2xl font-bold text-gray-800 mb-4">
+          Ferramentas
+        </Text>
         <View className="flex-row items-center bg-gray-100 rounded-lg p-2">
           <TextInput
             className="flex-1 ml-2 text-gray-800"
