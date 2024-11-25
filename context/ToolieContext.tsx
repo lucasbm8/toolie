@@ -23,7 +23,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ToolieContext.Provider
-      value={{ cart, setCart, address, setAddress, username, setUsername }}
+      value={{ cart, setCart, address, setAddress, setUsername, username }}
     >
       {children}
     </ToolieContext.Provider>
