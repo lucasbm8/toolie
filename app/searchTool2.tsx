@@ -160,16 +160,17 @@ const SearchTool: React.FC = () => {
     <View className="flex-1 bg-gray-100">
       {/* Header e Barra de Busca */}
       <View className="bg-white p-4 shadow-sm">
-        <Text className="text-2xl font-bold text-gray-800 mb-4">
-          Ferramentas
-        </Text>
-        <TouchableOpacity
-          className="bg-blue-500 px-4 py-2 rounded-lg"
-          onPress={() => router.push("/CartPage")} // Navega para a página do carrinho
-        >
-          Ir para o carrinho
-        </TouchableOpacity>
-        <View className="flex-row items-center bg-gray-100 rounded-lg p-2">
+        <View className="flex-row items-center justify-between">
+          <Text className="text-2xl font-bold text-gray-800">Ferramentas</Text>
+          <TouchableOpacity
+            className="bg-blue-500 px-4 py-2 rounded-lg"
+            onPress={() => router.push("/CartPage")} // Navega para a página do carrinho
+          >
+            <Text className="text-black">Ir para o carrinho</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View className="flex-row items-center bg-gray-100 rounded-lg p-2 mt-4">
           <TextInput
             className="flex-1 ml-2 text-gray-800"
             placeholder="Buscar por nome, descrição ou local..."
