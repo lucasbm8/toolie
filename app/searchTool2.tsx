@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-native";
 import { ToolieContext } from "@/context/ToolieContext";
-
+import { ShoppingCartIcon } from "lucide-react-native";
 // Importando o JSON local
 import toolsData from "./../assets/dataFerramentas.json";
 import { router } from "expo-router";
@@ -142,9 +142,10 @@ const SearchTool: React.FC = () => {
 
         <View className="mt-3">
           <TouchableOpacity
-            className={`bg-secondary flex-1 py-3 rounded-2xl mt-3 ${
-              isInCart ? "bg-red-500" : "bg-green-500"
-            }`}
+            className={`
+    flex-1 py-3 rounded-2xl mt-3 
+    ${isInCart ? "bg-red-500" : "bg-green-500 hover:bg-green-600"}
+  `}
             onPress={() => handleCartPress(item.id)}
           >
             <Text className="text-center text-white font-bold">
@@ -163,10 +164,17 @@ const SearchTool: React.FC = () => {
         <View className="flex-row items-center justify-between">
           <Text className="text-2xl font-bold text-gray-800">Ferramentas</Text>
           <TouchableOpacity
-            className="bg-blue-500 px-4 py-2 rounded-lg"
-            onPress={() => router.push("/CartPage")} // Navega para a página do carrinho
+            className="relative"
+            onPress={() => router.push("/CartPage")}
           >
-            <Text className="text-black">Ir para o carrinho</Text>
+            <ShoppingCartIcon size={24} color="black" />
+            {cart.size > 0 && (
+              <View className="absolute -top-2 -right-2 bg-red-500 rounded-full w-5 h-5 items-center justify-center">
+                <Text className="text-white text-xs font-bold">
+                  {cart.size}
+                </Text>
+              </View>
+            )}
           </TouchableOpacity>
         </View>
 
