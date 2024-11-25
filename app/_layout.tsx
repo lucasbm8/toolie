@@ -4,36 +4,38 @@ import ContextProvider from "@/context/ToolieContext";
 import { ToolieContext } from "@/context/ToolieContext";
 import React, { useContext } from "react";
 import { Tabs } from "expo-router/tabs";
+import LoginComponent from "@/components/LoginComponent";
 
 export default function RootLayout() {
-  const toolieContext = useContext(ToolieContext);
-  const username = toolieContext?.username || "";
+  return (
+    <ContextProvider>
+      <RootLayoutContent />
+    </ContextProvider>
+  );
+}
 
-  if (username === "") {
+function RootLayoutContent() {
+  const toolieContext = useContext(ToolieContext);
+  const isAuthenticated = toolieContext?.isAuthenticated || false;
+
+  if (!isAuthenticated) {
     return (
-      <ContextProvider>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{ title: "Login", headerShown: false }}
-          />
-        </Stack>
-      </ContextProvider>
+      <Stack>
+       <LoginComponent />
+      </Stack>
     );
   }
 
   return (
-    <ContextProvider>
-      <Tabs>
-        <Tabs.Screen
-          name="feedScreen"
-          options={{ title: "Feed", headerShown: false }}
-        />
-        <Tabs.Screen
-          name="CartPage"
-          options={{ title: "Cart", headerShown: false }}
-        />
-      </Tabs>
-    </ContextProvider>
+    <Tabs>
+      <Tabs.Screen
+        name="feedScreen"
+        options={{ title: "Feed", headerShown: false }}
+      />
+      <Tabs.Screen
+        name="CartPage"
+        options={{ title: "Cart", headerShown: false }}
+      />
+    </Tabs>
   );
 }

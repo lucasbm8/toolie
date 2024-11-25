@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { useRouter, Link } from "expo-router";
+import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
-import users from "../assets/dataUser.json"; // N
-// import { Link } from "expo-router";
-// import ProductDetailsPage from "@/app/productDetails";
+import users from "../assets/dataUser.json";
 import { ToolieContext } from "@/context/ToolieContext";
 
 const LoginComponent = () => {
@@ -12,24 +10,20 @@ const LoginComponent = () => {
   if (!toolieContext) {
     throw new Error("useContext must be used within a ContextProvider");
   }
-  const { username, setUsername } = toolieContext;
+  const { username, setUsername, setIsAuthenticated } = toolieContext;
 
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
-  const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] =
-    useState(false);
+  const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] = useState(false);
 
   const handleLogin = () => {
-    console.log("entrou com e email valendo: ", username);
     const user = users.find((u) => u.email === username);
 
     if (user) {
       setErrorMessage("");
-      setUsername("");
-      setPassword("");
-
-      // Redireciona para a tela baseada na flag do usuário
+      setIsAuthenticated(true);
+      
       if (user.flagLocatario) {
         router.push("/feedScreen");
       } else if (user.flagLocador) {
@@ -42,10 +36,6 @@ const LoginComponent = () => {
 
   const handleGoogleLogin = () => {
     // Implementar login com o Google posteriormente
-  };
-
-  const handlePasswordResetButtonPress = () => {
-    setIsPasswordResetButtonPressed(!isPasswordResetButtonPressed);
   };
 
   return (
@@ -64,11 +54,11 @@ const LoginComponent = () => {
         onChangeText={setPassword}
       />
 
-      {errorMessage ? (
+      {errorMessage && (
         <Text className="text-red-500 mb-4 flex justify-center">
           {errorMessage}
         </Text>
-      ) : null}
+      )}
 
       <TouchableOpacity
         className="bg-secondary-alt py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
