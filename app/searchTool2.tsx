@@ -34,14 +34,11 @@ interface RenderToolItemProps {
 }
 
 const SearchTool: React.FC = () => {
-  const { cart, setCart } = useContext(ToolieContext);
-
-  // Verifica se o contexto foi fornecido
-  if (!cart || !setCart) {
-    throw new Error(
-      "ToolieContext deve ser usado dentro de um ContextProvider"
-    );
+  const toolieContext = useContext(ToolieContext);
+  if (!toolieContext) {
+    throw new Error("useContext must be used within a ContextProvider");
   }
+  const { cart, setCart } = toolieContext;
 
   const [tools, setTools] = useState<Tool[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");

@@ -14,7 +14,11 @@ import toolsData from "./../assets/dataFerramentas.json";
 import { useRouter } from "expo-router";
 
 const CartPage: React.FC = () => {
-  const { cart, setCart } = useContext(ToolieContext);
+  const toolieContext = useContext(ToolieContext);
+  if (!toolieContext) {
+    throw new Error("useContext must be used within a ContextProvider");
+  }
+  const { cart, setCart } = toolieContext;
   const router = useRouter();
 
   // Estado para CEP e tipo de entrega
