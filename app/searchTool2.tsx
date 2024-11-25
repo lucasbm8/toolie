@@ -34,10 +34,17 @@ interface RenderToolItemProps {
 }
 
 const SearchTool: React.FC = () => {
+  const { cart, setCart } = useContext(ToolieContext);
+
+  // Verifica se o contexto foi fornecido
+  if (!cart || !setCart) {
+    throw new Error(
+      "ToolieContext deve ser usado dentro de um ContextProvider"
+    );
+  }
+
   const [tools, setTools] = useState<Tool[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const { cart, setCart } = useContext(ToolieContext);
 
   // Simula o fetch com dados locais
   useEffect(() => {
@@ -58,24 +65,54 @@ const SearchTool: React.FC = () => {
     });
   };
   const handleCartPress = (id: number) => {
+    // Encontra o item correspondente pelo id no toolsData
+    const tool = toolsData.find((item) => item.id === id);
+
+    if (!tool) {
+      console.error(`Ferramenta com id ${id} não encontrada.`);
+      return;
+    }
+
     const isInCart = cart.has(id);
 
     if (isInCart) {
       // Remove o item do carrinho
-      setCart((prevCart: Iterable<unknown> | null | undefined) => {
+      setCart((prevCart: Set<number>) => {
         const newCart = new Set(prevCart); // Cria um novo Set baseado no anterior
         newCart.delete(id); // Remove o item
+        console.log(
+          `Item removido do carrinho: ${tool.tipoFerramenta} (ID: ${id})`
+        );
+        console.log(
+          "Carrinho atualizado:",
+          Array.from(newCart).map((itemId) => {
+            const item = toolsData.find((tool) => tool.id === itemId);
+            return item
+              ? `${item.tipoFerramenta} (ID: ${item.id})`
+              : `Desconhecido (ID: ${itemId})`;
+          })
+        );
         return newCart; // Atualiza o estado
       });
-      console.log(`Item removido do carrinho: ${id}`);
     } else {
       // Adiciona o item ao carrinho
-      setCart((prevCart: Iterable<unknown> | null | undefined) => {
+      setCart((prevCart: Set<number>) => {
         const newCart = new Set(prevCart); // Cria um novo Set baseado no anterior
         newCart.add(id); // Adiciona o item
+        console.log(
+          `Item adicionado ao carrinho: ${tool.tipoFerramenta} (ID: ${id})`
+        );
+        console.log(
+          "Carrinho atualizado:",
+          Array.from(newCart).map((itemId) => {
+            const item = toolsData.find((tool) => tool.id === itemId);
+            return item
+              ? `${item.tipoFerramenta} (ID: ${item.id})`
+              : `Desconhecido (ID: ${itemId})`;
+          })
+        );
         return newCart; // Atualiza o estado
       });
-      console.log(`Item adicionado ao carrinho: ${id}`);
     }
   };
 
@@ -129,6 +166,12 @@ const SearchTool: React.FC = () => {
         <Text className="text-2xl font-bold text-gray-800 mb-4">
           Ferramentas
         </Text>
+        <TouchableOpacity
+          className="bg-blue-500 px-4 py-2 rounded-lg"
+          onPress={() => router.push("/CartPage")} // Navega para a página do carrinho
+        >
+          Ir para o carrinho
+        </TouchableOpacity>
         <View className="flex-row items-center bg-gray-100 rounded-lg p-2">
           <TextInput
             className="flex-1 ml-2 text-gray-800"
