@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useMemo } from "react";
 import {
   View,
   Text,
@@ -11,7 +11,7 @@ import {
 import { RadioButton } from "react-native-paper";
 import { ToolieContext } from "@/context/ToolieContext";
 import toolsData from "./../assets/dataFerramentas.json";
-import { useRouter } from "expo-router";
+import { router, useRouter } from "expo-router";
 
 const CartPage: React.FC = () => {
   const toolieContext = useContext(ToolieContext);
@@ -19,12 +19,13 @@ const CartPage: React.FC = () => {
     throw new Error("useContext must be used within a ContextProvider");
   }
   const { cart, setCart } = toolieContext;
-  const router = useRouter();
+  const { address, setAddress } = toolieContext; // Acesso ao endereço do contexto
 
   // Estado para CEP e tipo de entrega
-  const [cep, setCep] = useState("");
+  const [cep, setCep] = useState(""); // Inicia com o CEP do contexto, se disponível
   const [deliveryType, setDeliveryType] = useState<string>("retirar");
   const [deliveryCost, setDeliveryCost] = useState<number>(0);
+  const [addressInput, setAddressInput] = useState(""); // Estado para o campo de endereço
 
   // Função para formatar preço
   const formatPrice = (price: number): string => {
@@ -45,7 +46,7 @@ const CartPage: React.FC = () => {
 
   // Função para redirecionar para a página de checkout
   const handleProceedToCheckout = () => {
-    // router.push("/checkout"); // Redireciona para a página de checkout
+    router.push("/CheckoutPage"); // Redireciona para a página de checkout
   };
 
   // Função para renderizar cada item no carrinho
@@ -95,6 +96,22 @@ const CartPage: React.FC = () => {
     }
   };
 
+  // Função para atualizar o endereço no contexto
+  const handleAddressChange = (value: string) => {
+    setAddress(value); // Atualiza o endereço no contexto
+    setAddressInput(value); // Atualiza o valor local para o campo de entrada
+  };
+
+  // Função para calcular o total
+  const total = useMemo(() => {
+    const toolsTotal = Array.from(cart).reduce((acc, itemId) => {
+      const tool = toolsData.find((tool) => tool.id === itemId);
+      return tool ? acc + tool.precoAluguel : acc;
+    }, 0);
+
+    return toolsTotal + deliveryCost;
+  }, [cart, deliveryCost]);
+
   return (
     <ScrollView className="flex-1 bg-gray-100 p-4">
       <Text className="text-2xl font-bold text-gray-800 mb-6">
@@ -125,9 +142,19 @@ const CartPage: React.FC = () => {
           <TextInput
             placeholder="Informe seu CEP"
             value={cep}
-            onChangeText={setCep}
+            onChangeText={(value) => {
+              setCep(value);
+            }}
             className="border-2 border-gray-300 rounded-lg p-2 mb-4"
             keyboardType="numeric"
+          />
+
+          {/* Caixa para inserir o endereço */}
+          <TextInput
+            placeholder="Informe seu Endereço"
+            value={addressInput}
+            onChangeText={handleAddressChange} // Atualiza o endereço no contexto
+            className="border-2 border-gray-300 rounded-lg p-2 mb-4"
           />
 
           {/* Tipos de entrega com Radio Buttons */}
@@ -152,6 +179,14 @@ const CartPage: React.FC = () => {
             />
             <Text className="text-gray-800">
               Entrega Amanhã ({formatPrice(deliveryCost)})
+            </Text>
+          </View>
+
+          {/* Exibição do total */}
+          <View className="flex-row justify-between items-center mb-4">
+            <Text className="text-xl font-semibold text-gray-800">Total</Text>
+            <Text className="text-xl font-semibold text-gray-800">
+              {formatPrice(total)}
             </Text>
           </View>
 
