@@ -7,11 +7,12 @@ import {
   Image,
   TextInput,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { ToolieContext } from "@/context/ToolieContext";
 import toolsData from "./../assets/dataFerramentas.json";
-import { router, useRouter } from "expo-router";
+import { router } from "expo-router";
 
 const CartPage: React.FC = () => {
   const toolieContext = useContext(ToolieContext);
@@ -21,11 +22,11 @@ const CartPage: React.FC = () => {
   const { cart, setCart } = toolieContext;
   const { address, setAddress } = toolieContext; // Acesso ao endereço do contexto
 
-  // Estado para CEP e tipo de entrega
-  const [cep, setCep] = useState(""); // Inicia com o CEP do contexto, se disponível
+  const [cep, setCep] = useState("");
+  const [addressDisplay, setAddressDisplay] = useState("Insira o CEP");
   const [deliveryType, setDeliveryType] = useState<string>("retirar");
   const [deliveryCost, setDeliveryCost] = useState<number>(0);
-  const [addressInput, setAddressInput] = useState(""); // Estado para o campo de endereço
+  const [isFetchingAddress, setIsFetchingAddress] = useState(false); // Estado para exibir carregamento
 
   // Função para formatar preço
   const formatPrice = (price: number): string => {
@@ -88,7 +89,6 @@ const CartPage: React.FC = () => {
     setDeliveryType(type);
 
     if (type === "amanha") {
-      // Sorteia um valor entre 1 e 15
       const randomCost = Math.floor(Math.random() * 15) + 1;
       setDeliveryCost(randomCost);
     } else {
@@ -96,10 +96,36 @@ const CartPage: React.FC = () => {
     }
   };
 
-  // Função para atualizar o endereço no contexto
-  const handleAddressChange = (value: string) => {
-    setAddress(value); // Atualiza o endereço no contexto
-    setAddressInput(value); // Atualiza o valor local para o campo de entrada
+  // Função para buscar o endereço pelo CEP
+  const fetchAddressByCep = async (inputCep: string) => {
+    setIsFetchingAddress(true); // Mostra carregamento
+    try {
+      const sanitizedCep = inputCep.replace(/\D/g, ""); // Remove caracteres não numéricos
+      if (sanitizedCep.length !== 8) {
+        throw new Error("Insira um CEP válido (8 dígitos).");
+      }
+
+      const response = await fetch(`https://viacep.com.br/ws/${sanitizedCep}/json/`);
+      if (!response.ok) {
+        throw new Error("Erro ao buscar o endereço. Verifique o CEP.");
+      }
+
+      const data = await response.json();
+
+      if (data.erro) {
+        throw new Error("CEP não encontrado. Verifique o número.");
+      }
+
+      const rua = data.logradouro || "Rua não encontrada";
+      const bairro = data.bairro || "Bairro não encontrado";
+
+      setAddressDisplay(`${rua} - ${bairro}`);
+      setAddress(`${rua} - ${bairro}`); // Atualiza no contexto
+    } catch (error) {
+      setAddressDisplay("Erro ao buscar o endereço.");
+    } finally {
+      setIsFetchingAddress(false); // Esconde carregamento
+    }
   };
 
   // Função para calcular o total
@@ -124,44 +150,42 @@ const CartPage: React.FC = () => {
         </Text>
       ) : (
         <FlatList
-          data={Array.from(cart) as number[]} // Aqui é feita a tipagem explícita
+          data={Array.from(cart) as number[]}
           renderItem={renderCartItem}
           keyExtractor={(item) => item.toString()}
           contentContainerStyle={{ paddingBottom: 15 }}
         />
       )}
 
-      {/* Detalhes da entrega aparecerão apenas após a renderização de todos os itens */}
       {cart.size > 0 && (
         <View className="mt-6 p-4 bg-white rounded-lg shadow-md">
           <Text className="text-xl font-bold text-gray-800 mb-4">
             Detalhes da Entrega
           </Text>
 
-          {/* Caixa para inserir o CEP */}
+          {/* Entrada de CEP */}
           <TextInput
             placeholder="Informe seu CEP"
             value={cep}
             onChangeText={(value) => {
               setCep(value);
+              fetchAddressByCep(value); // Busca o endereço ao alterar o CEP
             }}
             className="border-2 border-gray-300 rounded-lg p-2 mb-4"
             keyboardType="numeric"
           />
 
-          {/* Caixa para inserir o endereço */}
-          <TextInput
-            placeholder="Informe seu Endereço"
-            value={addressInput}
-            onChangeText={handleAddressChange} // Atualiza o endereço no contexto
-            className="border-2 border-gray-300 rounded-lg p-2 mb-4"
-          />
+          {/* Exibição do endereço ou carregamento */}
+          {isFetchingAddress ? (
+            <ActivityIndicator size="small" color="#0000ff" />
+          ) : (
+            <Text className="text-gray-800 mb-4">{addressDisplay}</Text>
+          )}
 
-          {/* Tipos de entrega com Radio Buttons */}
+          {/* Tipos de entrega */}
           <Text className="font-semibold text-gray-700 mb-2">
             Escolha o tipo de entrega:
           </Text>
-
           <View className="flex-row items-center mb-4">
             <RadioButton
               value="retirar"
@@ -170,7 +194,6 @@ const CartPage: React.FC = () => {
             />
             <Text className="text-gray-800">Retirar no Local (Grátis)</Text>
           </View>
-
           <View className="flex-row items-center mb-4">
             <RadioButton
               value="amanha"
@@ -182,7 +205,7 @@ const CartPage: React.FC = () => {
             </Text>
           </View>
 
-          {/* Exibição do total */}
+          {/* Total */}
           <View className="flex-row justify-between items-center mb-4">
             <Text className="text-xl font-semibold text-gray-800">Total</Text>
             <Text className="text-xl font-semibold text-gray-800">
