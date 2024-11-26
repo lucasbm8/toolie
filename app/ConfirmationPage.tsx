@@ -14,9 +14,18 @@ const ConfirmationPage: React.FC = () => {
   }
 
   const { setCart } = toolieContext;
+  const {  setFilters } = toolieContext;
 
   const handleBackToHome = () => {
     setCart(new Set()); // Reseta o carrinho
+    setFilters({
+      estadoDeUso: [],
+      precoMin: 0,
+      precoMax: 1000,
+      condicoesDeUso: [],
+      rating: 0,
+      categories: [],
+    })
     router.push("/"); // Redireciona para a página inicial
   };
 

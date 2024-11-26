@@ -54,7 +54,7 @@ const FiltersPage: React.FC = () => {
     <View className="flex-1 bg-white">
       {/* Header */}
       <View className="bg-white p-4 flex-row items-center border-b border-gray-200">
-        <TouchableOpacity onPress={() => router.back()}>
+        <TouchableOpacity onPress={() => router.push("/searchTool2")}>
           <ChevronLeft size={24} color="black" />
         </TouchableOpacity>
         <Text className="text-xl font-bold ml-4">Filtros</Text>
