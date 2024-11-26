@@ -12,7 +12,8 @@
         "https://images.tcdn.com.br/img/img_prod/750752/martelo_unha_27mm_cabo_de_madeira_envernizado_2107_1_8c3672c25b63305e1a7699b459c68e41.jpg"
       ],
       "condicoesDeUso": "Condições adequadas",
-      "opcoesDeEntrega": "Retirada no local"
+      "opcoesDeEntrega": "Retirada no local",
+      "rating": 1
     },
     {
       "id": 2,
@@ -27,7 +28,8 @@
         "https://fken.vtexassets.com/arquivos/ids/287724-800-800?v=638556334742100000&width=800&height=800&aspect=true"
       ],
       "condicoesDeUso": "Condições novas",
-      "opcoesDeEntrega": "Entrega disponível"
+      "opcoesDeEntrega": "Entrega disponível",
+      "rating": 4.5
     },
     {
         "id": 3,
@@ -42,7 +44,8 @@
           "https://m.media-amazon.com/images/I/51oo60qZZYL._AC_SL1000_.jpg"
         ],
         "condicoesDeUso": "Em boas condições",
-        "opcoesDeEntrega": "Retirada no local"
+        "opcoesDeEntrega": "Retirada no local",
+        "rating": 4.5
       },
       {
         "id": 4,
@@ -57,7 +60,8 @@
           "https://boschferramentasbrasil.vtexassets.com/arquivos/ids/178148-2400-auto?v=638227144912830000&width=2400&height=auto&aspect=true"
         ],
         "condicoesDeUso": "Condições perfeitas",
-        "opcoesDeEntrega": "Entrega disponível"
+        "opcoesDeEntrega": "Entrega disponível",
+        "rating": 4.5
       },
       {
         "id": 5,
@@ -72,7 +76,8 @@
           "https://santil.jetassets.com.br/produto/1624594Alicate-Universal-1050-109266474551.jpg"
         ],
         "condicoesDeUso": "Leve desgaste",
-        "opcoesDeEntrega": "Retirada no local"
+        "opcoesDeEntrega": "Retirada no local",
+        "rating": 4.5
       },
       {
         "id": 6,
@@ -87,7 +92,8 @@
           "https://lojaagrometal.fbitsstatic.net/img/p/lixadeira-angular-gws-22u-professional-220v-bosch-82034/268544.jpg?w=1000&h=1000&v=no-change&qs=ignore"
         ],
         "condicoesDeUso": "Funcionando perfeitamente",
-        "opcoesDeEntrega": "Entrega disponível"
+        "opcoesDeEntrega": "Entrega disponível",
+        "rating": 4.5
       },
       {
         "id": 7,
@@ -102,6 +108,7 @@
           "https://casadosoldador.com.br/files/products_images/18409/chave-inglesa-15-polegadas-cromada-375mm-8221-brasfort-casa-do-soldador-01.webp?1649941602"
         ],
         "condicoesDeUso": "Nova em folha",
-        "opcoesDeEntrega": "Entrega disponível"
+        "opcoesDeEntrega": "Entrega disponível",
+        "rating": 4.5
       }
   ]

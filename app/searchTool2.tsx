@@ -27,6 +27,7 @@ interface Tool {
   fotosURL: string[];
   condicoesDeUso: string;
   opcoesDeEntrega: string;
+  rating: number;
 }
 
 interface RenderToolItemProps {
@@ -126,19 +127,35 @@ const SearchTool: React.FC = () => {
           />
         )}
 
-        <View className="flex-row justify-between items-start">
-          <View className="flex-1">
-            <Text className="text-xl font-bold text-gray-800">
-              {item.tipoFerramenta}
-            </Text>
-            <Text className="text-gray-600 mt-1">{item.descricao}</Text>
-          </View>
-          <View className="bg-blue-500 px-3 py-1 rounded">
-            <Text className="text-black font-bold">
-              {formatPrice(item.precoAluguel)}/dia
-            </Text>
-          </View>
-        </View>
+<View className="flex-row justify-between items-start">
+  <View className="flex-1">
+    <Text className="text-xl font-bold text-gray-800">
+      {item.tipoFerramenta}
+    </Text>
+    <Text className="text-gray-600 mt-1">{item.descricao}</Text>
+  </View>
+  <View>
+    <View className="bg-blue-500 px-3 py-1 rounded">
+      <Text className="text-black font-bold">
+        {formatPrice(item.precoAluguel)}/dia
+      </Text>
+    </View>
+    {/* Rating display */}
+    <View className="flex-row items-center justify-end mt-2">
+      {[...Array(5)].map((_, index) => (
+        <Text
+          key={index}
+          className={`text-xl ${
+            index < item.rating ? "text-yellow-400" : "text-gray-300"
+          }`}
+        >
+          ★
+        </Text>
+      ))}
+      <Text className="text-gray-600 ml-1 text-sm">({item.rating}/5)</Text>
+    </View>
+  </View>
+</View>
 
         <View className="mt-3">
           <TouchableOpacity
