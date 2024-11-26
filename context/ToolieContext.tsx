@@ -9,6 +9,8 @@ interface ToolieContextProps {
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   isAuthenticated: boolean;
   setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+  cep: string;
+  setCep: React.Dispatch<React.SetStateAction<string>>;
 }
 export const ToolieContext = React.createContext<
   ToolieContextProps | undefined
@@ -19,6 +21,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
   const [address, setAddress] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [cep, setCep] = useState<string>("");
 
   return (
     <ToolieContext.Provider
@@ -31,6 +34,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setUsername,
         isAuthenticated,
         setIsAuthenticated,
+        cep,
+        setCep,
       }}
     >
       {children}

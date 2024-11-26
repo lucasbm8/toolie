@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React, { useContext, useState, useMemo, useEffect } from "react";
 import {
   View,
   Text,
@@ -22,11 +22,17 @@ const CartPage: React.FC = () => {
   const { cart, setCart } = toolieContext;
   const { address, setAddress } = toolieContext; // Acesso ao endereço do contexto
 
-  const [cep, setCep] = useState("");
+  const { cep, setCep } = toolieContext; // Acesso ao CEP do contexto
   const [addressDisplay, setAddressDisplay] = useState("Insira o CEP");
   const [deliveryType, setDeliveryType] = useState<string>("retirar");
   const [deliveryCost, setDeliveryCost] = useState<number>(0);
   const [isFetchingAddress, setIsFetchingAddress] = useState(false); // Estado para exibir carregamento
+
+  useEffect(() => {
+    if (cep) {
+      fetchAddressByCep(cep);
+    }
+  }, [cep]);
 
   // Função para formatar preço
   const formatPrice = (price: number): string => {
@@ -89,8 +95,7 @@ const CartPage: React.FC = () => {
     setDeliveryType(type);
 
     if (type === "amanha") {
-      const randomCost = Math.floor(Math.random() * 15) + 1;
-      setDeliveryCost(randomCost);
+      setDeliveryCost(15);
     } else {
       setDeliveryCost(0); // Entrega grátis
     }
@@ -105,7 +110,9 @@ const CartPage: React.FC = () => {
         throw new Error("Insira um CEP válido (8 dígitos).");
       }
 
-      const response = await fetch(`https://viacep.com.br/ws/${sanitizedCep}/json/`);
+      const response = await fetch(
+        `https://viacep.com.br/ws/${sanitizedCep}/json/`
+      );
       if (!response.ok) {
         throw new Error("Erro ao buscar o endereço. Verifique o CEP.");
       }
@@ -203,7 +210,7 @@ const CartPage: React.FC = () => {
               onPress={() => handleDeliveryChange("amanha")}
             />
             <Text className="text-gray-800">
-              Entrega Amanhã ({formatPrice(deliveryCost)})
+              Entrega Amanhã (+{formatPrice(15)})
             </Text>
           </View>
 

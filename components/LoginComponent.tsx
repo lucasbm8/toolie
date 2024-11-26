@@ -11,11 +11,14 @@ const LoginComponent = () => {
     throw new Error("useContext must be used within a ContextProvider");
   }
   const { username, setUsername, setIsAuthenticated } = toolieContext;
+  const { cep, setCep } = toolieContext;
 
   const [password, setPassword] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
-  const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] = useState(false);
+  const [isPasswordResetButtonPressed, setIsPasswordResetButtonPressed] =
+    useState(false);
 
   const handleLogin = () => {
     const user = users.find((u) => u.email === username);
@@ -23,7 +26,7 @@ const LoginComponent = () => {
     if (user) {
       setErrorMessage("");
       setIsAuthenticated(true);
-      
+
       if (user.flagLocatario) {
         router.push("/feedScreen");
       } else if (user.flagLocador) {
@@ -52,6 +55,12 @@ const LoginComponent = () => {
         secureTextEntry
         value={password}
         onChangeText={setPassword}
+      />
+      <TextInput
+        className="border bg-white border-gray-700 rounded-2xl px-4 py-2 mb-4"
+        placeholder="Insira o CEP que deseja uttilizar"
+        value={cep}
+        onChangeText={setCep}
       />
 
       {errorMessage && (
