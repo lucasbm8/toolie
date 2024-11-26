@@ -28,7 +28,7 @@ const LoginComponent = () => {
       setIsAuthenticated(true);
 
       if (user.flagLocatario) {
-        router.push("/feedScreen");
+        router.push("/searchTool2");
       } else if (user.flagLocador) {
         // router.push("/locatarioScreen");
       }
