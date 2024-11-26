@@ -4,23 +4,22 @@ import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 //essa é a versão para trabalhar
 
-
 export default function TabsLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#0066CC',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: "#0066CC",
+        tabBarInactiveTintColor: "gray",
         tabBarStyle: {
           height: 60,
           paddingBottom: 5,
           paddingTop: 5,
         },
-        headerShown: false
+        headerShown: false,
       }}
     >
       <Tabs.Screen
-        name="feedScreen"
+        name="searchTool2"
         options={{
           title: "Feed",
           tabBarIcon: ({ color }) => (

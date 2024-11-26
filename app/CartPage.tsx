@@ -20,12 +20,13 @@ const CartPage: React.FC = () => {
     throw new Error("useContext must be used within a ContextProvider");
   }
   const { cart, setCart } = toolieContext;
-  const { address, setAddress } = toolieContext; // Acesso ao endereço do contexto
+  const { address, setAddress } = toolieContext;
+  const { deliveryCost, setDeliveryCost } = toolieContext; // Acesso ao endereço do contexto
 
   const { cep, setCep } = toolieContext; // Acesso ao CEP do contexto
   const [addressDisplay, setAddressDisplay] = useState("Insira o CEP");
   const [deliveryType, setDeliveryType] = useState<string>("retirar");
-  const [deliveryCost, setDeliveryCost] = useState<number>(0);
+
   const [isFetchingAddress, setIsFetchingAddress] = useState(false); // Estado para exibir carregamento
 
   useEffect(() => {

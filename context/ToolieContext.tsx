@@ -13,6 +13,8 @@ interface ToolieContextProps {
   setCep: React.Dispatch<React.SetStateAction<string>>;
   filters: Filters;
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  deliveryCost: number;
+  setDeliveryCost: React.Dispatch<React.SetStateAction<number>>;
 }
 
 interface Filters {
@@ -42,6 +44,7 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
     rating: 0,
     categories: [],
   });
+  const [deliveryCost, setDeliveryCost] = useState<number>(0);
 
   return (
     <ToolieContext.Provider
@@ -58,6 +61,8 @@ export const ContextProvider = ({ children }: { children: ReactNode }) => {
         setCep,
         filters,
         setFilters,
+        deliveryCost,
+        setDeliveryCost,
       }}
     >
       {children}

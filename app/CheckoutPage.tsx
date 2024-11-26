@@ -18,7 +18,7 @@ const CheckoutPage: React.FC = () => {
   if (!toolieContext) {
     throw new Error("useContext must be used within a ContextProvider");
   }
-  const { cart, address } = toolieContext;
+  const { cart, setCart, address, deliveryCost } = toolieContext;
   const router = useRouter();
 
   // Estado para as datas de aluguel
@@ -264,7 +264,7 @@ const CheckoutPage: React.FC = () => {
       >
         <Text className="text-lg font-semibold text-gray-800">Total</Text>
         <Text className="text-xl text-gray-800">
-          {formatPrice(calculateTotal)}
+          {formatPrice(calculateTotal + deliveryCost)}
         </Text>
       </View>
 
