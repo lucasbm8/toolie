@@ -11,8 +11,6 @@ import {
 import { ToolieContext } from "@/context/ToolieContext";
 import toolsData from "./../assets/dataFerramentas.json";
 import { useRouter } from "expo-router";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { Calendar } from "react-native-calendars";
 
 const CheckoutPage: React.FC = () => {
   const toolieContext = useContext(ToolieContext);
@@ -23,11 +21,9 @@ const CheckoutPage: React.FC = () => {
   const router = useRouter();
 
   // Estado para as datas de aluguel
-  const [startDate, setStartDate] = useState<Date | undefined>(undefined);
-  const [endDate, setEndDate] = useState<Date | undefined>(undefined);
-  const [paymentMethod, setPaymentMethod] = useState<string>(""); // Para armazenar o método de pagamento
-  const [showStartDatePicker, setShowStartDatePicker] = useState(false);
-  const [showEndDatePicker, setShowEndDatePicker] = useState(false);
+  const [startDate, setStartDate] = useState<string>(""); // Data de início no formato string
+  const [endDate, setEndDate] = useState<string>(""); // Data de fim no formato string
+  const [paymentMethod, setPaymentMethod] = useState<string>(""); // Método de pagamento
 
   // Função para formatar preço
   const formatPrice = (price: number): string => {
@@ -39,12 +35,20 @@ const CheckoutPage: React.FC = () => {
 
   // Função para calcular o total com base na quantidade de dias
   const calculateTotal = useMemo(() => {
-    const days =
-      endDate && startDate
-        ? Math.ceil(
-            (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
-          )
-        : 0;
+    const parseDate = (dateStr: string) => {
+      const [day, month, year] = dateStr.split("/").map(Number);
+      return new Date(year, month - 1, day);
+    };
+
+    if (!startDate || !endDate || startDate.length < 10 || endDate.length < 10) {
+      return 0;
+    }
+
+    const start = parseDate(startDate);
+    const end = parseDate(endDate);
+
+    const days = Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
+
     const toolsTotal = Array.from(cart).reduce((acc, itemId) => {
       const tool = toolsData.find((tool) => tool.id === itemId);
       return tool ? acc + tool.precoAluguel * days : acc;
@@ -53,28 +57,16 @@ const CheckoutPage: React.FC = () => {
     return toolsTotal;
   }, [cart, startDate, endDate]);
 
-  // Função para manipular a data de início
-  const handleStartDateChange = (
-    event: any,
-    selectedDate: Date | undefined
-  ) => {
-    setShowStartDatePicker(false);
-    if (selectedDate) {
-      setStartDate(selectedDate);
+  // Função para atualizar a data e adicionar "/" automaticamente
+  const handleDateInput = (date: string, setDate: (value: string) => void) => {
+    let formattedDate = date.replace(/\D/g, ""); // Remove caracteres não numéricos
+    if (formattedDate.length > 2) {
+      formattedDate = formattedDate.slice(0, 2) + "/" + formattedDate.slice(2);
     }
-  };
-
-  // Função para manipular a data de fim
-  const handleEndDateChange = (event: any, selectedDate: Date | undefined) => {
-    setShowEndDatePicker(false);
-    if (selectedDate) {
-      setEndDate(selectedDate);
+    if (formattedDate.length > 5) {
+      formattedDate = formattedDate.slice(0, 5) + "/" + formattedDate.slice(5, 9);
     }
-  };
-
-  // Função para redirecionar para a página de confirmação
-  const handleConfirmRental = () => {
-    // router.push("/confirmation"); // Página de confirmação
+    setDate(formattedDate);
   };
 
   // Função para renderizar cada item no resumo
@@ -100,16 +92,6 @@ const CheckoutPage: React.FC = () => {
     );
   };
 
-  // Função para formatação de datas com Intl.DateTimeFormat
-  const formatDate = (date: Date) => {
-    const formatter = new Intl.DateTimeFormat("pt-BR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-    return formatter.format(date);
-  };
-
   return (
     <ScrollView className="flex-1 bg-gray-100 p-4">
       <Text className="text-2xl font-bold text-gray-800 mb-6">
@@ -128,44 +110,26 @@ const CheckoutPage: React.FC = () => {
         <Text className="text-lg font-semibold text-gray-800 mb-2">
           Data de Início
         </Text>
-        <TouchableOpacity
-          onPress={() => setShowStartDatePicker(true)}
+        <TextInput
+          value={startDate}
+          onChangeText={(text) => handleDateInput(text, setStartDate)}
+          keyboardType="numeric"
+          placeholder="DD/MM/AAAA"
+          maxLength={10}
           className="border-2 border-gray-300 rounded-lg p-2 mb-4"
-        >
-          <Text>
-            {startDate ? formatDate(startDate) : "Selecione a data de início"}
-          </Text>
-        </TouchableOpacity>
-
-        {showStartDatePicker && (
-          <DateTimePicker
-            value={startDate || new Date()}
-            mode="date"
-            display="default"
-            onChange={handleStartDateChange}
-          />
-        )}
+        />
 
         <Text className="text-lg font-semibold text-gray-800 mb-2">
           Data de Fim
         </Text>
-        <TouchableOpacity
-          onPress={() => setShowEndDatePicker(true)}
+        <TextInput
+          value={endDate}
+          onChangeText={(text) => handleDateInput(text, setEndDate)}
+          keyboardType="numeric"
+          placeholder="DD/MM/AAAA"
+          maxLength={10}
           className="border-2 border-gray-300 rounded-lg p-2 mb-4"
-        >
-          <Text>
-            {endDate ? formatDate(endDate) : "Selecione a data de fim"}
-          </Text>
-        </TouchableOpacity>
-
-        {showEndDatePicker && (
-          <DateTimePicker
-            value={endDate || new Date()}
-            mode="date"
-            display="default"
-            onChange={handleEndDateChange}
-          />
-        )}
+        />
       </View>
 
       {/* Box de quantidade de dias */}
@@ -174,9 +138,11 @@ const CheckoutPage: React.FC = () => {
           Quantidade de Dias
         </Text>
         <Text className="text-xl text-gray-800">
-          {startDate && endDate
+          {startDate && endDate && startDate.length === 10 && endDate.length === 10
             ? Math.ceil(
-                (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+                (new Date(endDate.split("/").reverse().join("-")).getTime() -
+                  new Date(startDate.split("/").reverse().join("-")).getTime()) /
+                  (1000 * 3600 * 24)
               ) + " dias"
             : "Selecione as datas"}
         </Text>
@@ -194,51 +160,74 @@ const CheckoutPage: React.FC = () => {
 
       {/* Box de detalhes de pagamento */}
       <View className="bg-white p-4 rounded-lg shadow-md mb-6">
-        <Text className="text-lg font-semibold text-gray-800 mb-2">
+        <Text className="text-lg font-semibold text-gray-800 mb-4">
           Detalhes do Pagamento
         </Text>
 
-        {/* Opções de pagamento (visuais) */}
-        <View className="flex-row items-center mb-4">
+        {/* Botões de pagamento alinhados verticalmente */}
+        <View className="space-y-3">
           <TouchableOpacity
-            className="bg-gray-300 w-16 h-16 rounded-lg mr-4 flex justify-center items-center"
+            className={`w-full py-3 rounded-md border-2 items-center ${
+              paymentMethod === "credit-card" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+            }`}
             onPress={() => setPaymentMethod("credit-card")}
           >
-            <Text className="text-center text-white">CC</Text>
+            <Text
+              className={`text-sm font-medium ${
+                paymentMethod === "credit-card" ? "text-white" : "text-gray-700"
+              }`}
+            >
+              Cartão de Crédito
+            </Text>
           </TouchableOpacity>
-          <Text className="text-gray-800">Cartão de Crédito</Text>
-        </View>
 
-        <View className="flex-row items-center mb-4">
           <TouchableOpacity
-            className="bg-gray-300 w-16 h-16 rounded-lg mr-4 flex justify-center items-center"
+            className={`w-full py-3 rounded-md border-2 items-center ${
+              paymentMethod === "google-pay" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+            }`}
             onPress={() => setPaymentMethod("google-pay")}
           >
-            <Text className="text-center text-white">GP</Text>
+            <Text
+              className={`text-sm font-medium ${
+                paymentMethod === "google-pay" ? "text-white" : "text-gray-700"
+              }`}
+            >
+              Google Pay
+            </Text>
           </TouchableOpacity>
-          <Text className="text-gray-800">Google Pay</Text>
-        </View>
 
-        <View className="flex-row items-center mb-4">
           <TouchableOpacity
-            className="bg-gray-300 w-16 h-16 rounded-lg mr-4 flex justify-center items-center"
+            className={`w-full py-3 rounded-md border-2 items-center ${
+              paymentMethod === "paypal" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+            }`}
             onPress={() => setPaymentMethod("paypal")}
           >
-            <Text className="text-center text-white">PP</Text>
+            <Text
+              className={`text-sm font-medium ${
+                paymentMethod === "paypal" ? "text-white" : "text-gray-700"
+              }`}
+            >
+              PayPal
+            </Text>
           </TouchableOpacity>
-          <Text className="text-gray-800">PayPal</Text>
         </View>
       </View>
 
+
       {/* Botão de Confirmar Aluguel */}
-      <TouchableOpacity
-        className="bg-blue-600 w-full p-4 rounded-lg absolute bottom-10"
-        onPress={handleConfirmRental}
-      >
-        <Text className="text-white text-center font-semibold">
-          Confirmar Aluguel
-        </Text>
-      </TouchableOpacity>
+      <View className="w-full px-4 pb-6">
+        <TouchableOpacity
+          className="py-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 flex justify-center items-center"
+          //onPress={handleConfirmRental} DETERMINAR QUAL SERÁ O FEEDBACK DA CONFIRMAÇÃO DO ALUGUEL
+          activeOpacity={0.8} // Feedback visual
+        >
+          <Text className="text-white text-lg font-bold tracking-wide">
+            Confirmar Aluguel
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+
     </ScrollView>
   );
 };
