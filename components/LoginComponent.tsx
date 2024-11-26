@@ -58,7 +58,7 @@ const LoginComponent = () => {
       />
       <TextInput
         className="border bg-white border-gray-700 rounded-2xl px-4 py-2 mb-4"
-        placeholder="Insira o CEP que deseja uttilizar"
+        placeholder="Insira o CEP que deseja utilizar"
         value={cep}
         onChangeText={setCep}
       />
