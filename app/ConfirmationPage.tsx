@@ -21,14 +21,18 @@ const ConfirmationPage: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Seu pedido de aluguel foi confirmado</Text>
-      <Text style={styles.message}>
-        Agora só resta esperar a aprovação do locador.
+    <View className="flex-1 justify-center items-center bg-secondary-light p-4">
+      <Text className="text-center text-lg font-semibold text-gray-800 mb-9">
+        Seu pedido de aluguel foi confirmado! 😁
       </Text>
 
-      <TouchableOpacity style={styles.button} onPress={handleBackToHome}>
-        <Text style={styles.buttonText}>Voltar para a Home</Text>
+      <TouchableOpacity
+        className="bg-secondary py-3 px-8 rounded-2xl"
+        onPress={handleBackToHome}
+      >
+        <Text className="text-center text-white font-bold text-2xl">
+          Voltar para a Home
+        </Text>
       </TouchableOpacity>
     </View>
   );

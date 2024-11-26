@@ -33,6 +33,7 @@ const CheckoutPage: React.FC = () => {
       currency: "BRL",
     });
   };
+  const isButtonDisabled = !startDate || !endDate || !paymentMethod; // Verifica se algum campo está vazio
 
   // Função para calcular o total com base na quantidade de dias
   const calculateTotal = useMemo(() => {
@@ -41,14 +42,21 @@ const CheckoutPage: React.FC = () => {
       return new Date(year, month - 1, day);
     };
 
-    if (!startDate || !endDate || startDate.length < 10 || endDate.length < 10) {
+    if (
+      !startDate ||
+      !endDate ||
+      startDate.length < 10 ||
+      endDate.length < 10
+    ) {
       return 0;
     }
 
     const start = parseDate(startDate);
     const end = parseDate(endDate);
 
-    const days = Math.ceil((end.getTime() - start.getTime()) / (1000 * 3600 * 24));
+    const days = Math.ceil(
+      (end.getTime() - start.getTime()) / (1000 * 3600 * 24)
+    );
 
     const toolsTotal = Array.from(cart).reduce((acc, itemId) => {
       const tool = toolsData.find((tool) => tool.id === itemId);
@@ -65,7 +73,8 @@ const CheckoutPage: React.FC = () => {
       formattedDate = formattedDate.slice(0, 2) + "/" + formattedDate.slice(2);
     }
     if (formattedDate.length > 5) {
-      formattedDate = formattedDate.slice(0, 5) + "/" + formattedDate.slice(5, 9);
+      formattedDate =
+        formattedDate.slice(0, 5) + "/" + formattedDate.slice(5, 9);
     }
     setDate(formattedDate);
   };
@@ -77,7 +86,10 @@ const CheckoutPage: React.FC = () => {
     if (!tool) return null;
 
     return (
-      <View className="bg-white p-4 rounded-lg mb-4" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+      <View
+        className="bg-white p-4 rounded-lg mb-4"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
         <Image
           source={{ uri: tool.fotosURL[0] }}
           className="w-24 h-24 rounded-lg mb-4"
@@ -95,7 +107,10 @@ const CheckoutPage: React.FC = () => {
 
   // Função para redirecionar para a tela de confirmação
   const handleConfirmRental = () => {
-    router.push("/ConfirmationPage"); // Redireciona para a tela de confirmação
+    router.push("/ConfirmationPage");
+    setStartDate("");
+    setEndDate("");
+    setPaymentMethod(""); // Redireciona para a tela de confirmação
   };
 
   return (
@@ -112,7 +127,10 @@ const CheckoutPage: React.FC = () => {
       />
 
       {/* Seletores de data */}
-      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+      <View
+        className="bg-white p-4 rounded-lg mb-6"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
         <Text className="text-lg font-semibold text-gray-800 mb-2">
           Data de Início
         </Text>
@@ -139,15 +157,23 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Box de quantidade de dias */}
-      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+      <View
+        className="bg-white p-4 rounded-lg mb-6"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
         <Text className="text-lg font-semibold text-gray-800">
           Quantidade de Dias
         </Text>
         <Text className="text-xl text-gray-800">
-          {startDate && endDate && startDate.length === 10 && endDate.length === 10
+          {startDate &&
+          endDate &&
+          startDate.length === 10 &&
+          endDate.length === 10
             ? Math.ceil(
                 (new Date(endDate.split("/").reverse().join("-")).getTime() -
-                  new Date(startDate.split("/").reverse().join("-")).getTime()) /
+                  new Date(
+                    startDate.split("/").reverse().join("-")
+                  ).getTime()) /
                   (1000 * 3600 * 24)
               ) + " dias"
             : "Selecione as datas"}
@@ -155,7 +181,10 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Box de endereço */}
-      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+      <View
+        className="bg-white p-4 rounded-lg mb-6"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
         <Text className="text-lg font-semibold text-gray-800">
           Endereço de Entrega
         </Text>
@@ -165,7 +194,10 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Box de detalhes de pagamento */}
-      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+      <View
+        className="bg-white p-4 rounded-lg mb-6"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
         <Text className="text-lg font-semibold text-gray-800 mb-4">
           Detalhes do Pagamento
         </Text>
@@ -174,7 +206,9 @@ const CheckoutPage: React.FC = () => {
         <View className="space-y-3">
           <TouchableOpacity
             className={`w-full py-3 rounded-md border-2 items-center ${
-              paymentMethod === "credit-card" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+              paymentMethod === "credit-card"
+                ? "bg-green-500 border-green-600"
+                : "bg-gray-200 border-gray-300"
             }`}
             onPress={() => setPaymentMethod("credit-card")}
           >
@@ -189,7 +223,9 @@ const CheckoutPage: React.FC = () => {
 
           <TouchableOpacity
             className={`w-full py-3 rounded-md border-2 items-center ${
-              paymentMethod === "google-pay" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+              paymentMethod === "google-pay"
+                ? "bg-green-500 border-green-600"
+                : "bg-gray-200 border-gray-300"
             }`}
             onPress={() => setPaymentMethod("google-pay")}
           >
@@ -204,7 +240,9 @@ const CheckoutPage: React.FC = () => {
 
           <TouchableOpacity
             className={`w-full py-3 rounded-md border-2 items-center ${
-              paymentMethod === "paypal" ? "bg-green-500 border-green-600" : "bg-gray-200 border-gray-300"
+              paymentMethod === "paypal"
+                ? "bg-green-500 border-green-600"
+                : "bg-gray-200 border-gray-300"
             }`}
             onPress={() => setPaymentMethod("paypal")}
           >
@@ -220,25 +258,43 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Exibindo o Total */}
-      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
-        <Text className="text-lg font-semibold text-gray-800">
-          Total
-        </Text>
+      <View
+        className="bg-white p-4 rounded-lg mb-6"
+        style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}
+      >
+        <Text className="text-lg font-semibold text-gray-800">Total</Text>
         <Text className="text-xl text-gray-800">
           {formatPrice(calculateTotal)}
         </Text>
       </View>
 
-      {/* Botão de Confirmar Aluguel */}
       <View className="w-full px-4 pb-6">
-        <TouchableOpacity
-          className="py-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 flex justify-center items-center"
-          onPress={handleConfirmRental}
-        >
-          <Text className="text-white text-lg font-bold tracking-wide">
-            Confirmar Aluguel
+        {/* {isButtonDisabled && (
+          <Text className="text-red-900 mb-4">
+            Preencha todos os campos antes de continuar!
           </Text>
-        </TouchableOpacity>
+        )} */}
+
+        {/* Botão de aviso quando faltam campos */}
+        {isButtonDisabled ? (
+          <TouchableOpacity
+            className="bg-red-500 py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
+            style={{ elevation: 2 }}
+            disabled
+          >
+            <Text className="text-white text-center text-lg font-semibold">
+              Preencha todos os campos
+            </Text>
+          </TouchableOpacity>
+        ) : (
+          // Botão de confirmação quando todos os campos estão preenchidos
+          <TouchableOpacity
+            className="bg-secondary-alt py-3 rounded-2xl mb-4 border border-gray-700 flex-1"
+            onPress={handleConfirmRental}
+          >
+            <Text className="text-center text-white font-bold">Confirmar</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );
