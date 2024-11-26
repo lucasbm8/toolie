@@ -1,12 +1,6 @@
 // FiltersPage.tsx
 import React, { useContext } from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  ScrollView,
-  Switch,
-} from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Switch } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { ToolieContext } from "@/context/ToolieContext";
 import { router } from "expo-router";
@@ -21,7 +15,7 @@ const FiltersPage: React.FC = () => {
 
   const estadosDeUso = ["Novo", "Usado", "Seminovo"];
   const condicoesDeUso = ["Excelente", "Bom", "Regular"];
-  const categories = ["Construção", "Jardinagem", "Elétrica", "Mecânica"];
+  const categories = ["Construção", "Jardinagem", "Elétrica", "Encanamento"];
 
   const toggleEstadoDeUso = (estado: string) => {
     setFilters((prev) => ({
@@ -51,11 +45,11 @@ const FiltersPage: React.FC = () => {
   };
 
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1">
       {/* Header */}
-      <View className="bg-white p-4 flex-row items-center border-b border-gray-200">
+      <View className="p-4 flex-row items-center border-b border-gray-300 shadow-md">
         <TouchableOpacity onPress={() => router.push("/searchTool2")}>
-          <ChevronLeft size={24} color="black" />
+          <ChevronLeft size={24} />
         </TouchableOpacity>
         <Text className="text-xl font-bold ml-4">Filtros</Text>
       </View>
@@ -69,21 +63,11 @@ const FiltersPage: React.FC = () => {
               <TouchableOpacity
                 key={estado}
                 onPress={() => toggleEstadoDeUso(estado)}
-                className={`px-4 py-2 rounded-full border ${
-                  filters.estadoDeUso.includes(estado)
-                    ? "bg-blue-500 border-blue-500"
-                    : "border-gray-300"
+                className={`px-4 py-2 rounded-full border shadow-md ${
+                  filters.estadoDeUso.includes(estado) ? "" : "border-gray-300"
                 }`}
               >
-                <Text
-                  className={`${
-                    filters.estadoDeUso.includes(estado)
-                      ? "text-white"
-                      : "text-gray-700"
-                  }`}
-                >
-                  {estado}
-                </Text>
+                <Text className="font-medium">{estado}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -105,7 +89,7 @@ const FiltersPage: React.FC = () => {
               }))
             }
           />
-          <View className="flex-row justify-between">
+          <View className="flex-row justify-between mt-2">
             <Text>R$ {filters.precoMin}</Text>
             <Text>R$ {filters.precoMax}</Text>
           </View>
@@ -123,7 +107,7 @@ const FiltersPage: React.FC = () => {
               setFilters((prev) => ({ ...prev, rating: value }))
             }
           />
-          <View className="flex-row items-center">
+          <View className="flex-row items-center mt-2">
             <Text>{filters.rating} estrelas ou mais</Text>
           </View>
         </View>
@@ -136,21 +120,11 @@ const FiltersPage: React.FC = () => {
               <TouchableOpacity
                 key={category}
                 onPress={() => toggleCategory(category)}
-                className={`px-4 py-2 rounded-full border ${
-                  filters.categories.includes(category)
-                    ? "bg-blue-500 border-blue-500"
-                    : "border-gray-300"
+                className={`px-4 py-2 rounded-full border shadow-md ${
+                  filters.categories.includes(category) ? "" : "border-gray-300"
                 }`}
               >
-                <Text
-                  className={`${
-                    filters.categories.includes(category)
-                      ? "text-white"
-                      : "text-gray-700"
-                  }`}
-                >
-                  {category}
-                </Text>
+                <Text className="font-medium">{category}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -164,21 +138,13 @@ const FiltersPage: React.FC = () => {
               <TouchableOpacity
                 key={condicao}
                 onPress={() => toggleCondicaoDeUso(condicao)}
-                className={`px-4 py-2 rounded-full border ${
+                className={`px-4 py-2 rounded-full border shadow-md ${
                   filters.condicoesDeUso.includes(condicao)
-                    ? "bg-blue-500 border-blue-500"
+                    ? ""
                     : "border-gray-300"
                 }`}
               >
-                <Text
-                  className={`${
-                    filters.condicoesDeUso.includes(condicao)
-                      ? "text-white"
-                      : "text-gray-700"
-                  }`}
-                >
-                  {condicao}
-                </Text>
+                <Text className="font-medium">{condicao}</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -186,7 +152,7 @@ const FiltersPage: React.FC = () => {
       </ScrollView>
 
       {/* Botões de Ação */}
-      <View className="p-4 border-t border-gray-200">
+      <View className="p-4 border-t border-gray-300 shadow-lg">
         <TouchableOpacity
           onPress={() =>
             setFilters({
@@ -198,17 +164,15 @@ const FiltersPage: React.FC = () => {
               categories: [],
             })
           }
-          className="mb-3 py-3 border border-gray-300 rounded-lg"
+          className="mb-3 py-3 border border-gray-300 rounded-lg shadow-md"
         >
-          <Text className="text-center text-gray-700">Limpar Filtros</Text>
+          <Text className="text-center font-medium">Limpar Filtros</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => router.back()}
-          className="py-3 bg-blue-500 rounded-lg"
+          className="py-3 rounded-lg shadow-md"
         >
-          <Text className="text-center text-white font-bold">
-            Aplicar Filtros
-          </Text>
+          <Text className="text-center font-bold">Aplicar Filtros</Text>
         </TouchableOpacity>
       </View>
     </View>
