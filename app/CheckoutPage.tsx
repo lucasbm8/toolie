@@ -158,6 +158,16 @@ const CheckoutPage: React.FC = () => {
         </Text>
       </View>
 
+      {/* Box de total do aluguel */}
+      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
+        <Text className="text-lg font-semibold text-gray-800">
+          Total do Aluguel
+        </Text>
+        <Text className="text-xl text-gray-800 font-bold">
+          {formatPrice(calculateTotal)}
+        </Text>
+      </View>
+
       {/* Box de detalhes de pagamento */}
       <View className="bg-white p-4 rounded-lg shadow-md mb-6">
         <Text className="text-lg font-semibold text-gray-800 mb-4">
@@ -213,21 +223,17 @@ const CheckoutPage: React.FC = () => {
         </View>
       </View>
 
-
       {/* Botão de Confirmar Aluguel */}
       <View className="w-full px-4 pb-6">
         <TouchableOpacity
           className="py-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 flex justify-center items-center"
-          //onPress={handleConfirmRental} DETERMINAR QUAL SERÁ O FEEDBACK DA CONFIRMAÇÃO DO ALUGUEL
-          activeOpacity={0.8} // Feedback visual
+          activeOpacity={0.8}
         >
           <Text className="text-white text-lg font-bold tracking-wide">
             Confirmar Aluguel
           </Text>
         </TouchableOpacity>
       </View>
-
-
     </ScrollView>
   );
 };
