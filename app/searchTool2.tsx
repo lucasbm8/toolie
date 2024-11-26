@@ -22,12 +22,13 @@ interface Tool {
   estadoDeUso: string;
   descricao: string;
   precoAluguel: number;
-  disponibilidade: string;
+  disponivel: boolean;
   localizacao: string;
   fotosURL: string[];
   condicoesDeUso: string;
   opcoesDeEntrega: string;
   rating: number;
+  category: string;
 }
 
 interface RenderToolItemProps {
@@ -115,8 +116,8 @@ const SearchTool: React.FC = () => {
   };
 
   const renderToolItem = ({ item }: RenderToolItemProps) => {
-    const isInCart = cart.has(item.id); // Verifica se o item está no carrinho
-
+    const isInCart = cart.has(item.id);
+  
     return (
       <View className="bg-gray-50 p-4 mb-4 rounded-lg shadow-sm">
         {item.fotosURL && item.fotosURL.length > 0 && (
@@ -126,47 +127,70 @@ const SearchTool: React.FC = () => {
             resizeMode="cover"
           />
         )}
-
-<View className="flex-row justify-between items-start">
-  <View className="flex-1">
-    <Text className="text-xl font-bold text-gray-800">
-      {item.tipoFerramenta}
-    </Text>
-    <Text className="text-gray-600 mt-1">{item.descricao}</Text>
-  </View>
-  <View>
-    <View className="bg-blue-500 px-3 py-1 rounded">
-      <Text className="text-black font-bold">
-        {formatPrice(item.precoAluguel)}/dia
-      </Text>
-    </View>
-    {/* Rating display */}
-    <View className="flex-row items-center justify-end mt-2">
-      {[...Array(5)].map((_, index) => (
-        <Text
-          key={index}
-          className={`text-xl ${
-            index < item.rating ? "text-yellow-400" : "text-gray-300"
-          }`}
-        >
-          ★
-        </Text>
-      ))}
-      <Text className="text-gray-600 ml-1 text-sm">({item.rating}/5)</Text>
-    </View>
-  </View>
-</View>
-
+  
+        <View className="flex-row justify-between items-start">
+          <View className="flex-1">
+            <Text className="text-xl font-bold text-gray-800">
+              {item.tipoFerramenta}
+            </Text>
+            <Text className="text-gray-600 mt-1">{item.descricao}</Text>
+            
+            {/* Status de disponibilidade */}
+            <View className={`mt-2 rounded-full px-2 py-1 ${
+              item.disponivel ? 'bg-green-100' : 'bg-red-100'
+            } self-start`}>
+              <Text className={`${
+                item.disponivel ? 'text-green-700' : 'text-red-700'
+              } font-medium`}>
+                {item.disponivel ? 'Disponível' : 'Indisponível'}
+              </Text>
+            </View>
+          </View>
+  
+          <View>
+            <View className="bg-blue-500 px-3 py-1 rounded">
+              <Text className="text-black font-bold">
+                {formatPrice(item.precoAluguel)}/dia
+              </Text>
+            </View>
+            {/* Rating display */}
+            <View className="flex-row items-center justify-end mt-2">
+              {[...Array(5)].map((_, index) => (
+                <Text
+                  key={index}
+                  className={`text-xl ${
+                    index < item.rating ? "text-yellow-400" : "text-gray-300"
+                  }`}
+                >
+                  ★
+                </Text>
+              ))}
+              <Text className="text-gray-600 ml-1 text-sm">({item.rating}/5)</Text>
+            </View>
+          </View>
+        </View>
+  
         <View className="mt-3">
           <TouchableOpacity
             className={`
-    flex-1 py-3 rounded-2xl mt-3 
-    ${isInCart ? "bg-red-500" : "bg-green-500 hover:bg-green-600"}
-  `}
-            onPress={() => handleCartPress(item.id)}
+              flex-1 py-3 rounded-2xl mt-3 
+              ${!item.disponivel 
+                ? 'bg-gray-400' 
+                : isInCart 
+                  ? "bg-red-500" 
+                  : "bg-green-500"
+              }
+            `}
+            onPress={() => item.disponivel ? handleCartPress(item.id) : null}
+            disabled={!item.disponivel}
           >
             <Text className="text-center text-white font-bold">
-              {isInCart ? "Remover do carrinho" : "Adicionar ao carrinho"}
+              {!item.disponivel 
+                ? 'Indisponível' 
+                : isInCart 
+                  ? "Remover do carrinho" 
+                  : "Adicionar ao carrinho"
+              }
             </Text>
           </TouchableOpacity>
         </View>
