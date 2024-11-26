@@ -11,6 +11,7 @@ import {
 import { ToolieContext } from "@/context/ToolieContext";
 import toolsData from "./../assets/dataFerramentas.json";
 import { useRouter } from "expo-router";
+import ConfirmationPage from "./ConfirmationPage";
 
 const CheckoutPage: React.FC = () => {
   const toolieContext = useContext(ToolieContext);
@@ -76,7 +77,7 @@ const CheckoutPage: React.FC = () => {
     if (!tool) return null;
 
     return (
-      <View className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <View className="bg-white p-4 rounded-lg mb-4" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
         <Image
           source={{ uri: tool.fotosURL[0] }}
           className="w-24 h-24 rounded-lg mb-4"
@@ -90,6 +91,11 @@ const CheckoutPage: React.FC = () => {
         </Text>
       </View>
     );
+  };
+
+  // Função para redirecionar para a tela de confirmação
+  const handleConfirmRental = () => {
+    router.push("/ConfirmationPage"); // Redireciona para a tela de confirmação
   };
 
   return (
@@ -106,7 +112,7 @@ const CheckoutPage: React.FC = () => {
       />
 
       {/* Seletores de data */}
-      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
         <Text className="text-lg font-semibold text-gray-800 mb-2">
           Data de Início
         </Text>
@@ -133,7 +139,7 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Box de quantidade de dias */}
-      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
         <Text className="text-lg font-semibold text-gray-800">
           Quantidade de Dias
         </Text>
@@ -149,7 +155,7 @@ const CheckoutPage: React.FC = () => {
       </View>
 
       {/* Box de endereço */}
-      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
         <Text className="text-lg font-semibold text-gray-800">
           Endereço de Entrega
         </Text>
@@ -158,23 +164,13 @@ const CheckoutPage: React.FC = () => {
         </Text>
       </View>
 
-      {/* Box de total do aluguel */}
-      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
-        <Text className="text-lg font-semibold text-gray-800">
-          Total do Aluguel
-        </Text>
-        <Text className="text-xl text-gray-800 font-bold">
-          {formatPrice(calculateTotal)}
-        </Text>
-      </View>
-
       {/* Box de detalhes de pagamento */}
-      <View className="bg-white p-4 rounded-lg shadow-md mb-6">
+      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
         <Text className="text-lg font-semibold text-gray-800 mb-4">
           Detalhes do Pagamento
         </Text>
 
-        {/* Botões de pagamento alinhados verticalmente */}
+        {/* Botões de pagamento */}
         <View className="space-y-3">
           <TouchableOpacity
             className={`w-full py-3 rounded-md border-2 items-center ${
@@ -223,11 +219,21 @@ const CheckoutPage: React.FC = () => {
         </View>
       </View>
 
+      {/* Exibindo o Total */}
+      <View className="bg-white p-4 rounded-lg mb-6" style={{ shadowOpacity: 0.1, shadowRadius: 3, elevation: 3 }}>
+        <Text className="text-lg font-semibold text-gray-800">
+          Total
+        </Text>
+        <Text className="text-xl text-gray-800">
+          {formatPrice(calculateTotal)}
+        </Text>
+      </View>
+
       {/* Botão de Confirmar Aluguel */}
       <View className="w-full px-4 pb-6">
         <TouchableOpacity
           className="py-4 rounded-2xl shadow-lg bg-gradient-to-r from-blue-500 to-blue-700 flex justify-center items-center"
-          activeOpacity={0.8}
+          onPress={handleConfirmRental}
         >
           <Text className="text-white text-lg font-bold tracking-wide">
             Confirmar Aluguel
