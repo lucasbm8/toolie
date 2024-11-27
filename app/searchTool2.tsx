@@ -48,7 +48,7 @@ const SearchTool: React.FC = () => {
   const [tools, setTools] = useState<Tool[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [isLoading, setIsLoading] = useState(true);
-  let toolsData: Tool[] = [];
+  let [toolsData, setToolsData] = useState<Tool[]>([]);
   // Simula o fetch com dados locais
   useEffect(() => {
     const fetchTools = async () => {
@@ -56,7 +56,7 @@ const SearchTool: React.FC = () => {
         const response = await axios.get('https://toolie-back-end.onrender.com/api/v1/ferramentas');
         console.log('Ferramentas:', response.data);
         setTools(response.data);
-        toolsData = response.data;
+        setToolsData( response.data);
       } catch (error) {
         console.error('Erro ao buscar ferramentas:', error);
       } finally {
