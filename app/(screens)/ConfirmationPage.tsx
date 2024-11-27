@@ -13,8 +13,23 @@ const ConfirmationPage: React.FC = () => {
     throw new Error("useContext must be used within a ContextProvider");
   }
 
-  const { setCart } = toolieContext;
-  const {  setFilters } = toolieContext;
+  const context = useContext(ToolieContext);
+ 
+ if (!context) {
+   throw new Error("Context must be used within provider");
+ }
+
+ const { 
+  username, 
+  setUsername, 
+  setIsAuthenticated, 
+  setCart, 
+  setAddress,
+  address,
+  cep,
+  setCep,
+  setFilters
+} = context;
 
   const handleBackToHome = () => {
     setCart(new Set()); // Reseta o carrinho
@@ -25,7 +40,13 @@ const ConfirmationPage: React.FC = () => {
       condicoesDeUso: [],
       rating: 0,
       categories: [],
-    })
+    });
+    setUsername('');
+   setIsAuthenticated(false);
+   setCart(new Set());
+   setAddress('');
+   setCep('');
+   router.replace('/');
     router.push("/"); // Redireciona para a página inicial
   };
 
@@ -40,7 +61,7 @@ const ConfirmationPage: React.FC = () => {
         onPress={handleBackToHome}
       >
         <Text className="text-center text-white font-bold text-2xl">
-          Voltar para a Home
+          Voltar para o Início
         </Text>
       </TouchableOpacity>
     </View>

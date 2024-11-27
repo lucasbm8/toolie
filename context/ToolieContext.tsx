@@ -1,5 +1,21 @@
 import React, { ReactNode, useState } from "react";
 
+interface Tool {
+  id: number;
+  proprietarioId: number;
+  tipoFerramenta: string;
+  estadoDeUso: string;
+  descricao: string;
+  precoAluguel: number;
+  disponibilidade: string;
+  localizacao: string;
+  fotosURL: string[];
+  condicoesDeUso: string;
+  opcoesDeEntrega: string;
+  rating: number;
+  categoria: string;
+}
+
 interface ToolieContextProps {
   cart: Set<number>;
   setCart: React.Dispatch<React.SetStateAction<Set<number>>>;
@@ -15,6 +31,7 @@ interface ToolieContextProps {
   setFilters: React.Dispatch<React.SetStateAction<Filters>>;
   deliveryCost: number;
   setDeliveryCost: React.Dispatch<React.SetStateAction<number>>;
+  
 }
 
 interface Filters {
