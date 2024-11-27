@@ -23,13 +23,13 @@ interface Tool {
   estadoDeUso: string;
   descricao: string;
   precoAluguel: number;
-  disponivel: boolean;
+  disponibilidade: string;
   localizacao: string;
   fotosURL: string[];
   condicoesDeUso: string;
   opcoesDeEntrega: string;
   rating: number;
-  category: string;
+  categoria: string;
 }
 
 interface RenderToolItemProps {
@@ -77,9 +77,9 @@ const SearchTool: React.FC = () => {
     const matchesRating = tool.rating >= filters.rating;
 
     // Filtro de categoria
-    const matchesCategory =
+    const matchescategoria =
       filters.categories.length === 0 ||
-      filters.categories.includes(tool.category);
+      filters.categories.includes(tool.categoria);
 
     return (
       matchesSearch &&
@@ -87,7 +87,7 @@ const SearchTool: React.FC = () => {
       matchesPreco &&
       matchesCondicoes &&
       matchesRating &&
-      matchesCategory
+      matchescategoria
     );
   });
 
@@ -172,15 +172,21 @@ const SearchTool: React.FC = () => {
             {/* Status de disponibilidade */}
             <View
               className={`mt-2 rounded-full px-2 py-1 ${
-                item.disponivel ? "bg-green-100" : "bg-red-100"
+                item.disponibilidade === "Disponível"
+                  ? "bg-green-100"
+                  : "bg-red-100"
               } self-start`}
             >
               <Text
                 className={`${
-                  item.disponivel ? "text-green-700" : "text-red-700"
+                  item.disponibilidade === "Disponível"
+                    ? "text-green-700"
+                    : "text-red-700"
                 } font-medium`}
               >
-                {item.disponivel ? "Disponível" : "Indisponível"}
+                {item.disponibilidade === "Disponível"
+                  ? "Disponível"
+                  : "Indisponível"}
               </Text>
             </View>
           </View>
@@ -215,18 +221,22 @@ const SearchTool: React.FC = () => {
             className={`
               flex-1 py-3 rounded-2xl mt-3 
               ${
-                !item.disponivel
+                !(item.disponibilidade === "Disponível")
                   ? "bg-gray-400"
                   : isInCart
                     ? "bg-red-500"
                     : "bg-green-500"
               }
             `}
-            onPress={() => (item.disponivel ? handleCartPress(item.id) : null)}
-            disabled={!item.disponivel}
+            onPress={() =>
+              item.disponibilidade === "Disponível"
+                ? handleCartPress(item.id)
+                : null
+            }
+            disabled={!(item.disponibilidade === "Disponível")}
           >
             <Text className="text-center text-white font-bold">
-              {!item.disponivel
+              {!(item.disponibilidade === "Disponível")
                 ? "Indisponível"
                 : isInCart
                   ? "Remover do carrinho"
@@ -296,12 +306,12 @@ const SearchTool: React.FC = () => {
                   <Text className="text-blue-700">{estado}</Text>
                 </View>
               ))}
-              {filters.categories.map((category) => (
+              {filters.categories.map((categoria) => (
                 <View
-                  key={category}
+                  key={categoria}
                   className="bg-blue-100 rounded-full px-3 py-1 mr-2"
                 >
-                  <Text className="text-blue-700">{category}</Text>
+                  <Text className="text-blue-700">{categoria}</Text>
                 </View>
               ))}
               {filters.condicoesDeUso.map((condicao) => (
