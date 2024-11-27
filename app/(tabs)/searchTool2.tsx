@@ -280,7 +280,7 @@ const SearchTool: React.FC = () => {
           <Text className="text-2xl font-bold text-gray-800">Ferramentas</Text>
           <View className="flex-row gap-4">
             <TouchableOpacity
-              onPress={() => router.push("/FiltersPage")}
+              onPress={() => router.push("../FiltersPage")}
               className="flex-row items-center"
             >
               <Text className="text-blue-500 font-semibold px-2 py-2 rounded-lg shadow">
@@ -289,7 +289,7 @@ const SearchTool: React.FC = () => {
             </TouchableOpacity>
             <TouchableOpacity
               className="flex-row items-center bg-white px-2 py-2 rounded-lg shadow"
-              onPress={() => router.push("/CartPage")}
+              onPress={() => router.push("../CartPage")}
             >
               <ShoppingCartIcon size={24} />
               {/* <Text className="ml-2 font-medium">Carrinho</Text> */}

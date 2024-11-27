@@ -9,7 +9,7 @@ import {
   ScrollView,
 } from "react-native";
 import { ToolieContext } from "@/context/ToolieContext";
-import toolsData from "./../assets/dataFerramentas.json";
+import toolsData from "../../assets/dataFerramentas.json";
 import { useRouter } from "expo-router";
 import ConfirmationPage from "./ConfirmationPage";
 
@@ -107,7 +107,7 @@ const CheckoutPage: React.FC = () => {
 
   // Função para redirecionar para a tela de confirmação
   const handleConfirmRental = () => {
-    router.push("/ConfirmationPage");
+    router.push("../ConfirmationPage");
     setStartDate("");
     setEndDate("");
     setPaymentMethod(""); // Redireciona para a tela de confirmação

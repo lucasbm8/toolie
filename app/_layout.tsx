@@ -4,9 +4,6 @@ import "../global.css";
 import ContextProvider from "@/context/ToolieContext";
 import { ToolieContext } from "@/context/ToolieContext";
 import React, { useContext } from "react";
-import { Tabs } from "expo-router/tabs";
-import { FontAwesome } from "@expo/vector-icons";
-import TabsLayout from "./(tabs)/_layout";
 
 export default function RootLayout() {
   return (
@@ -20,19 +17,13 @@ function RootLayoutContent() {
   const toolieContext = useContext(ToolieContext);
   const isAuthenticated = toolieContext?.isAuthenticated || false;
 
-  if (!isAuthenticated) {
-    return (
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{ title: "Login", headerShown: false }}
-        />
-      </Stack>
-    );
-  }
-
   return (
-    <TabsLayout />
-   
+    <Stack screenOptions={{ headerShown: false }}>
+      {!isAuthenticated ? (
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+      ) : (
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      )}
+    </Stack>
   );
 }

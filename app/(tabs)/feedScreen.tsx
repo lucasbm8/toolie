@@ -10,7 +10,7 @@ const FeedScreen = () => {
 
   // Função para redirecionar para a página de busca
   const handleCardPress = () => {
-    router.push("/searchTool2");
+    router.push("../searchTool2");
     console.log("userId: ", userId);
   };
 

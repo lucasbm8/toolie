@@ -11,8 +11,9 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { ToolieContext } from "@/context/ToolieContext";
-import toolsData from "./../assets/dataFerramentas.json";
+import toolsData from "../../assets/dataFerramentas.json";
 import { router } from "expo-router";
+import { FontAwesome } from "@expo/vector-icons";
 
 const CartPage: React.FC = () => {
   const toolieContext = useContext(ToolieContext);
@@ -54,7 +55,7 @@ const CartPage: React.FC = () => {
 
   // Função para redirecionar para a página de checkout
   const handleProceedToCheckout = () => {
-    router.push("/CheckoutPage"); // Redireciona para a página de checkout
+    router.push("../CheckoutPage"); // Redireciona para a página de checkout
   };
 
   // Função para renderizar cada item no carrinho
@@ -153,9 +154,21 @@ const CartPage: React.FC = () => {
       </Text>
 
       {cart.size === 0 ? (
-        <Text className="text-center text-gray-500">
+        <View className="flex-1 justify-center items-center bg-gray-100 p-4">
+        <Text className="text-gray-500 text-lg mb-4 text-center">
           Seu carrinho está vazio
         </Text>
+        <TouchableOpacity 
+          onPress={() => router.push("../searchTool2")}
+          className="flex-row items-center gap-2 px-6 py-3 border border-blue-500 rounded-lg"
+        >
+          <FontAwesome name="arrow-left" size={20} color="#3B82F6" />
+          <Text className="text-blue-500 font-semibold">Voltar para Busca</Text>
+        </TouchableOpacity>
+       </View>
+        
+
+        
       ) : (
         <FlatList
           data={Array.from(cart) as number[]}
