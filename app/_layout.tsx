@@ -1,4 +1,3 @@
-// app/_layout.tsx
 import { Stack } from "expo-router";
 import "../global.css";
 import ContextProvider from "@/context/ToolieContext";
@@ -20,9 +19,18 @@ function RootLayoutContent() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       {!isAuthenticated ? (
-        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="index" />
       ) : (
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen 
+            name="(screens)" 
+            options={{ 
+              headerShown: false,
+              presentation: 'modal' 
+            }} 
+          />
+        </>
       )}
     </Stack>
   );
