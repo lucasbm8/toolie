@@ -19,6 +19,7 @@
     "@miblanchard/react-native-slider": "^2.6.0",
     "@react-native-community/datetimepicker": "^8.2.0",
     "@react-navigation/native": "^6.0.2",
+    "axios": "^1.7.8",
     "date-fns": "^4.1.0",
     "expo": "~51.0.28",
     "expo-constants": "~16.0.2",
