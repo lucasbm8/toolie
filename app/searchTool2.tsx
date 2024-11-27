@@ -12,8 +12,10 @@ import {
 import { ToolieContext } from "@/context/ToolieContext";
 import { ShoppingCartIcon } from "lucide-react-native";
 // Importando o JSON local
-import toolsData from "./../assets/dataFerramentas.json";
+// import toolsData from "./../assets/dataFerramentas.json";
 import { router } from "expo-router";
+import axios from 'axios';
+
 
 // Interface para a estrutura exata da sua API
 interface Tool {
@@ -45,11 +47,33 @@ const SearchTool: React.FC = () => {
 
   const [tools, setTools] = useState<Tool[]>([]);
   const [searchQuery, setSearchQuery] = useState<string>("");
-
+  const [isLoading, setIsLoading] = useState(true);
+  let toolsData: Tool[] = [];
   // Simula o fetch com dados locais
   useEffect(() => {
-    setTools(toolsData);
+    const fetchTools = async () => {
+      try {
+        const response = await axios.get('https://toolie-back-end.onrender.com/api/v1/ferramentas');
+        console.log('Ferramentas:', response.data);
+        setTools(response.data);
+        toolsData = response.data;
+      } catch (error) {
+        console.error('Erro ao buscar ferramentas:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+ 
+    fetchTools();
   }, []);
+ 
+  if (isLoading) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
 
   const filteredTools = tools.filter((tool) => {
     // Filtro de busca
