@@ -168,15 +168,19 @@ const SearchTool: React.FC = () => {
               {item.tipoFerramenta}
             </Text>
             <Text className="text-gray-600 mt-1">{item.descricao}</Text>
-            
+
             {/* Status de disponibilidade */}
-            <View className={`mt-2 rounded-full px-2 py-1 ${
-              item.disponivel ? 'bg-green-100' : 'bg-red-100'
-            } self-start`}>
-              <Text className={`${
-                item.disponivel ? 'text-green-700' : 'text-red-700'
-              } font-medium`}>
-                {item.disponivel ? 'Disponível' : 'Indisponível'}
+            <View
+              className={`mt-2 rounded-full px-2 py-1 ${
+                item.disponivel ? "bg-green-100" : "bg-red-100"
+              } self-start`}
+            >
+              <Text
+                className={`${
+                  item.disponivel ? "text-green-700" : "text-red-700"
+                } font-medium`}
+              >
+                {item.disponivel ? "Disponível" : "Indisponível"}
               </Text>
             </View>
           </View>
@@ -210,23 +214,23 @@ const SearchTool: React.FC = () => {
           <TouchableOpacity
             className={`
               flex-1 py-3 rounded-2xl mt-3 
-              ${!item.disponivel 
-                ? 'bg-gray-400' 
-                : isInCart
-                  ? "bg-red-500" 
-                  : "bg-green-500"
+              ${
+                !item.disponivel
+                  ? "bg-gray-400"
+                  : isInCart
+                    ? "bg-red-500"
+                    : "bg-green-500"
               }
             `}
-            onPress={() => item.disponivel ? handleCartPress(item.id) : null}
+            onPress={() => (item.disponivel ? handleCartPress(item.id) : null)}
             disabled={!item.disponivel}
           >
             <Text className="text-center text-white font-bold">
-              {!item.disponivel 
-                ? 'Indisponível' 
+              {!item.disponivel
+                ? "Indisponível"
                 : isInCart
-                  ? "Remover do carrinho" 
-                  : "Adicionar ao carrinho"
-              }
+                  ? "Remover do carrinho"
+                  : "Adicionar ao carrinho"}
             </Text>
           </TouchableOpacity>
         </View>
@@ -241,17 +245,20 @@ const SearchTool: React.FC = () => {
         <View className="flex-row items-center justify-between">
           <Text className="text-2xl font-bold text-gray-800">Ferramentas</Text>
           <View className="flex-row gap-4">
-            <TouchableOpacity 
+            <TouchableOpacity
               onPress={() => router.push("/FiltersPage")}
               className="flex-row items-center"
             >
-              <Text className="text-blue-500 font-semibold">Filtros</Text>
+              <Text className="text-blue-500 font-semibold px-2 py-2 rounded-lg shadow">
+                Filtros
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
-              className="relative"
+              className="flex-row items-center bg-white px-2 py-2 rounded-lg shadow"
               onPress={() => router.push("/CartPage")}
             >
-              <ShoppingCartIcon size={24} color="black" />
+              <ShoppingCartIcon size={24} />
+              {/* <Text className="ml-2 font-medium">Carrinho</Text> */}
               {cart.size > 0 && (
                 <View className="absolute -top-2 -right-2 bg-red-500 rounded-full w-5 h-5 items-center justify-center">
                   <Text className="text-white text-xs font-bold">
@@ -282,17 +289,26 @@ const SearchTool: React.FC = () => {
           <View className="mt-3">
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
               {filters.estadoDeUso.map((estado) => (
-                <View key={estado} className="bg-blue-100 rounded-full px-3 py-1 mr-2">
+                <View
+                  key={estado}
+                  className="bg-blue-100 rounded-full px-3 py-1 mr-2"
+                >
                   <Text className="text-blue-700">{estado}</Text>
                 </View>
               ))}
               {filters.categories.map((category) => (
-                <View key={category} className="bg-blue-100 rounded-full px-3 py-1 mr-2">
+                <View
+                  key={category}
+                  className="bg-blue-100 rounded-full px-3 py-1 mr-2"
+                >
                   <Text className="text-blue-700">{category}</Text>
                 </View>
               ))}
               {filters.condicoesDeUso.map((condicao) => (
-                <View key={condicao} className="bg-blue-100 rounded-full px-3 py-1 mr-2">
+                <View
+                  key={condicao}
+                  className="bg-blue-100 rounded-full px-3 py-1 mr-2"
+                >
                   <Text className="text-blue-700">{condicao}</Text>
                 </View>
               ))}
