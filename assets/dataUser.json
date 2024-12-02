@@ -1,0 +1,156 @@
+[
+    {
+      "id": 1,
+      "nome": "João",
+      "email": "joao@gmail.com",
+      "telefone": "1234567890",
+      "endereco": "Endereço Proprietario",
+      "fotoDocumentoURL": "fotoURL",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": true,
+      "flagLocatario": false
+    },
+    {
+      "id": 2,
+      "nome": "Yoel",
+      "email": "yoel@gmail.com",
+      "telefone": "12345678490",
+      "endereco": "Endereço Proprietario4",
+      "fotoDocumentoURL": "fotoURL4",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 3,
+      "nome": "Locador",
+      "email": "locador@example.com",
+      "telefone": "12345",
+      "endereco": "Rua 1",
+      "fotoDocumentoURL": "http://example.com/documento.jpg",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": true,
+      "flagLocatario": false
+    },
+    {
+      "id": 4,
+      "nome": "Locatario",
+      "email": "locatario@example.com",
+      "telefone": "67890",
+      "endereco": "Rua 2",
+      "fotoDocumentoURL": "http://example.com/documento2.jpg",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": true
+    },
+    {
+      "id": 5,
+      "nome": "Jorge",
+      "email": "jorge@gmail.com",
+      "telefone": "1234567890",
+      "endereco": "Endereço 1",
+      "fotoDocumentoURL": "url1",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 6,
+      "nome": "Maria",
+      "email": "maria@gmail.com",
+      "telefone": "2345678901",
+      "endereco": "Endereço 2",
+      "fotoDocumentoURL": "url2",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 7,
+      "nome": "Pedro",
+      "email": "pedro@gmail.com",
+      "telefone": "3456789012",
+      "endereco": "Endereço 3",
+      "fotoDocumentoURL": "url3",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 8,
+      "nome": "Ana",
+      "email": "ana@gmail.com",
+      "telefone": "4567890123",
+      "endereco": "Endereço 4",
+      "fotoDocumentoURL": "url4",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 9,
+      "nome": "Luis",
+      "email": "luis@gmail.com",
+      "telefone": "5678901234",
+      "endereco": "Endereço 5",
+      "fotoDocumentoURL": "url5",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 10,
+      "nome": "Carlos",
+      "email": "carlos@gmail.com",
+      "telefone": "6789012345",
+      "endereco": "Endereço 6",
+      "fotoDocumentoURL": "url6",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 11,
+      "nome": "Lucia",
+      "email": "lucia@gmail.com",
+      "telefone": "7890123456",
+      "endereco": "Endereço 7",
+      "fotoDocumentoURL": "url7",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 12,
+      "nome": "Fernando",
+      "email": "fernando@gmail.com",
+      "telefone": "8901234567",
+      "endereco": "Endereço 8",
+      "fotoDocumentoURL": "url8",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 13,
+      "nome": "Elena",
+      "email": "elena@gmail.com",
+      "telefone": "9012345678",
+      "endereco": "Endereço 9",
+      "fotoDocumentoURL": "url9",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    },
+    {
+      "id": 14,
+      "nome": "Diego",
+      "email": "diego@gmail.com",
+      "telefone": "1234567891",
+      "endereco": "Endereço 10",
+      "fotoDocumentoURL": "url10",
+      "statusConta": "VERIFICACAO_PENDENTE",
+      "flagLocador": false,
+      "flagLocatario": false
+    }
+  ]

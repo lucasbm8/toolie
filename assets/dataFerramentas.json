@@ -1,0 +1,581 @@
+[
+  {
+    "id": 1,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Martelo",
+    "estadoDeUso": "Usado",
+    "descricao": "Martelo de aço de 500g",
+    "precoAluguel": 20,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://images.tcdn.com.br/img/img_prod/750752/martelo_unha_27mm_cabo_de_madeira_envernizado_2107_1_8c3672c25b63305e1a7699b459c68e41.jpg"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Chave de fenda",
+    "estadoDeUso": "Novo",
+    "descricao": "Chave de fenda Philips",
+    "precoAluguel": 50,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://fken.vtexassets.com/arquivos/ids/287724-800-800?v=638556334742100000&width=800&height=800&aspect=true"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Construção",
+    "rating": 4.5
+  },
+  {
+    "id": 3,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Furadeira",
+    "estadoDeUso": "Usado",
+    "descricao": "Furadeira elétrica de alta potência",
+    "precoAluguel": 100,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/46/448/186803/1628086010251.JPG",
+      "https://www.dutramaquinas.com.br/shared/img/produto/alta/482451_furadeira_parafusadeira_3_8_a_bateria_12v_com_kit_de_brocas_e_bits_bpf_12k3.webp"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Envio por motoboy disponível",
+    "categoria": "Construção",
+    "rating": 4.8
+  },
+  {
+    "id": 4,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Serra Circular",
+    "estadoDeUso": "Novo",
+    "descricao": "Serra circular com lâmina de 7 polegadas",
+    "precoAluguel": 120,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://www.silvaselantes.com.br/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/d/w/dwe560b2_1.png"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.9
+  },
+  {
+    "id": 5,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Alicate Universal",
+    "estadoDeUso": "Novo",
+    "descricao": "Alicate universal de alta resistência",
+    "precoAluguel": 25,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/2/468/1812/Alicate-Universal-Profissional-de-8-Pol-gedore-8280-200-iox1.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.7
+  },
+  {
+    "id": 6,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Parafusadeira",
+    "estadoDeUso": "Usado",
+    "descricao": "Parafusadeira elétrica com bateria recarregável",
+    "precoAluguel": 90,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://elastobor.vtexassets.com/arquivos/ids/261736/PARAFUSADEIRA-FURADEIRA-VONDER-3-8-PFV012-BATERIA-BIVOLT.jpg?v=638200154901200000"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Construção",
+    "rating": 4.6
+  },
+  {
+    "id": 7,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Nível de Bolha",
+    "estadoDeUso": "Novo",
+    "descricao": "Nível de bolha de 1 metro",
+    "precoAluguel": 15,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/46/448/130800/1569260399408.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "proprietarioId": 4,
+    "tipoFerramenta": "Marreta",
+    "estadoDeUso": "Usado",
+    "descricao": "Marreta de 1kg para demolições",
+    "precoAluguel": 30,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/2/524/126087/Marreta-Oitavada-1000g-com-Cabo-de-Madei-sparta-10905551.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.2
+  },
+  {
+    "id": 9,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Escada Telescópica",
+    "estadoDeUso": "Novo",
+    "descricao": "Escada telescópica de alumínio de 3 metros",
+    "precoAluguel": 150,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://images.tcdn.com.br/img/img_prod/625353/escada_telescopica_aluminio_0_80x3_20m_10_degraus_005121_16871_1_3b99f9a9779da721e6e6b078c7261761.jpg"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Construção",
+    "rating": 4.8
+  },
+  {
+    "id": 10,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Chave Inglesa",
+    "estadoDeUso": "Novo",
+    "descricao": "Chave inglesa ajustável de 10 polegadas",
+    "precoAluguel": 20,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Leste",
+    "fotosURL": [
+      "https://www.apmaquinaseferramentas.com.br/public-images/product/zoom-3662-AA92C.jpg"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.9
+  },
+  {
+    "id": 11,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Serrote",
+    "estadoDeUso": "Usado",
+    "descricao": "Serrote de poda com cabo ergonômico",
+    "precoAluguel": 25,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/31/274/20506/Serrote-Profissional-26-pol-tramontina-432420261.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Jardinagem",
+    "rating": 4.4
+  },
+  {
+    "id": 12,
+    "proprietarioId": 4,
+    "tipoFerramenta": "Compressor de Ar",
+    "estadoDeUso": "Usado",
+    "descricao": "Compressor portátil de 50 litros",
+    "precoAluguel": 200,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/21/159/116480/1572956418719.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.5
+  },
+  {
+    "id": 13,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Roçadeira",
+    "estadoDeUso": "Novo",
+    "descricao": "Roçadeira a gasolina de alta performance",
+    "precoAluguel": 300,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://cdn.awsli.com.br/2500x2500/1921/1921752/produto/130889289/ae49b3c53e.jpg"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Jardinagem",
+    "rating": 4.9
+  },
+  {
+    "id": 14,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Pistola de Pintura",
+    "estadoDeUso": "Novo",
+    "descricao": "Pistola de pintura HVLP com ajuste fino",
+    "precoAluguel": 80,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/24/244/19725/Pistola-de-Pintura-HVLP-600-ml-e-Bico-14-steula-bc75-141.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.8
+  },
+  {
+    "id": 15,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Betoneira",
+    "estadoDeUso": "Usado",
+    "descricao": "Betoneira elétrica de 120 litros, ideal para misturar concreto.",
+    "precoAluguel": 150,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/31/284/147416/1596113228463.JPG"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.5
+  },
+  {
+    "id": 16,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Prumo de Pedreiro",
+    "estadoDeUso": "Novo",
+    "descricao": "Prumo de pedreiro com cordão de 2 metros.",
+    "precoAluguel": 10,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://static.superproatacado.com.br/storage/1000/prumo-pedreiro-700gr-economico-895024-kala-1582750242.jpg"
+    ],
+    "condicoesDeUso": "Regular",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Construção",
+    "rating": 4.8
+  },
+  {
+    "id": 17,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Esquadro de Aço",
+    "estadoDeUso": "Novo",
+    "descricao": "Esquadro de aço inoxidável para medições precisas.",
+    "precoAluguel": 25,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/31/270/94065/Esquadro-em-Aco-10-Pol-com-Cabo-PVC-momfort-6160101.JPG"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 5
+  },
+  {
+    "id": 18,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Martelo Demolidor",
+    "estadoDeUso": "Usado",
+    "descricao": "Martelo demolidor elétrico de 10kg.",
+    "precoAluguel": 200,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://static.felap.com.br/public/felap/imagens/produtos/martelo-demolidor-encaixe-sextavado-30kg-220v-d25980-b2-dewalt-66267214cc0fe.jpg"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Construção",
+    "rating": 4.7
+  },
+  {
+    "id": 19,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Ponteira para Demolição",
+    "estadoDeUso": "Novo",
+    "descricao": "Ponteira compatível com martelos demolidores.",
+    "precoAluguel": 15,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://momfort.com.br/wp-content/uploads/2022/06/PONTEIRA-DE-ACO-STANDARD-3.jpg"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Construção",
+    "rating": 4.9
+  },
+  {
+    "id": 20,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Chave Stilson",
+    "estadoDeUso": "Usado",
+    "descricao": "Chave de cano ajustável de 24 polegadas.",
+    "precoAluguel": 40,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Leste",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/2/248/92398/Chave-para-Tubo-tipo-Stillson-de-12-Pol--nove-54-3513000312-1.JPG"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Encanamento",
+    "rating": 4.6
+  },
+  {
+    "id": 21,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Válvula de Teste de Pressão",
+    "estadoDeUso": "Novo",
+    "descricao": "Válvula para teste de pressão em encanamentos.",
+    "precoAluguel": 30,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://cdn.awsli.com.br/600x700/2587/2587765/produto/212675222fc85cb5d9f.jpg"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Encanamento",
+    "rating": 4.8
+  },
+  {
+    "id": 22,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Cortador de Tubos",
+    "estadoDeUso": "Seminovo",
+    "descricao": "Cortador de tubos metálicos e PVC.",
+    "precoAluguel": 35,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://d8vlg9z1oftyc.cloudfront.net/arsystem/image/product/d207b5df387c835d7b3da0c3060b707120201211112624/850/cortador-de-tubos-com-escareador_7694.jpg"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Encanamento",
+    "rating": 4.7
+  },
+  {
+    "id": 23,
+    "proprietarioId": 4,
+    "tipoFerramenta": "Desentupidor de Cano",
+    "estadoDeUso": "Seminovo",
+    "descricao": "Ferramenta elétrica para desentupimento de canos.",
+    "precoAluguel": 100,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://down-br.img.susercontent.com/file/5e575999c6f5b23c4345d451a31d5ec8"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Encanamento",
+    "rating": 4.9
+  },
+  {
+    "id": 24,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Chave para Porca de Registro",
+    "estadoDeUso": "Novo",
+    "descricao": "Chave para ajustar registros de água.",
+    "precoAluguel": 15,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/48/634/257437488/chaveparap-idany-6002184147.JPG"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Encanamento",
+    "rating": 5
+  },
+  {
+    "id": 25,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Alicate Descascador de Fios",
+    "estadoDeUso": "Seminovo",
+    "descricao": "Alicate para descascar fios de até 6mm.",
+    "precoAluguel": 25,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://toolsbr.fbitsstatic.net/img/p/stanley-alicate-descascador-de-fios-175881/363433.jpg?w=1080&h=1080&v=202411111340&qs=ignore"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Elétrica",
+    "rating": 4.9
+  },
+  {
+    "id": 26,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Multímetro Digital",
+    "estadoDeUso": "Usado",
+    "descricao": "Multímetro digital para medição de tensão e corrente.",
+    "precoAluguel": 50,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://images.tcdn.com.br/img/img_prod/632258/multimetro_digital_dt830b_1537_1_d7a76410b3c774a93002757bd7625292_20240109102843.jpg"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Elétrica",
+    "rating": 4.7
+  },
+  {
+    "id": 27,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Detector de Tensão",
+    "estadoDeUso": "Novo",
+    "descricao": "Detector de tensão sem contato.",
+    "precoAluguel": 20,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/19/189/121594/Detector-de-Tensao-DTV1210-12V-a-1000V-A-vonder-38701210001.JPG"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Elétrica",
+    "rating": 4.8
+  },
+  {
+    "id": 28,
+    "proprietarioId": 4,
+    "tipoFerramenta": "Furadeira de Impacto",
+    "estadoDeUso": "Usado",
+    "descricao": "Furadeira de impacto com broca para concreto.",
+    "precoAluguel": 90,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Leste",
+    "fotosURL": [
+      "https://img.lojadomecanico.com.br/IMAGENS/21/221/18641/1653585349626.JPG"
+    ],
+    "condicoesDeUso": "Excelente",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Elétrica",
+    "rating": 4.6
+  },
+  {
+    "id": 29,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Teste de Tomadas",
+    "estadoDeUso": "Seminovo",
+    "descricao": "Dispositivo para testar tomadas elétricas.",
+    "precoAluguel": 15,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://images-americanas.b2w.io/produtos/7339775083/imagens/teste-de-tomada-vonder-identificador-de-tensao-para-tomadas-110-ou-220-volts/7339775083_1_xlarge.jpg"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Elétrica",
+    "rating": 4.9
+  },
+  {
+    "id": 30,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Aparador de Cerca Viva",
+    "estadoDeUso": "Usado",
+    "descricao": "Aparador elétrico de 500W.",
+    "precoAluguel": 120,
+    "disponibilidade": "Disponível",
+    "localizacao": "Centro",
+    "fotosURL": [
+      "https://www.agrotama.com.br/upload/novo_produtos/aparadorpodadordecercavivaeletrico600wcorte16mm_102055805.jpg"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Jardinagem",
+    "rating": 4.7
+  },
+  {
+    "id": 31,
+    "proprietarioId": 1,
+    "tipoFerramenta": "Pulverizador Manual",
+    "estadoDeUso": "Novo",
+    "descricao": "Pulverizador manual de 2 litros.",
+    "precoAluguel": 20,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Norte",
+    "fotosURL": [
+      "https://www.sigmatools.com.br/site/wp-content/uploads/2021/09/1000x1000.png"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Jardinagem",
+    "rating": 4.8
+  },
+  {
+    "id": 32,
+    "proprietarioId": 2,
+    "tipoFerramenta": "Tesoura de Poda",
+    "estadoDeUso": "Novo",
+    "descricao": "Tesoura de poda ergonômica.",
+    "precoAluguel": 30,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Sul",
+    "fotosURL": [
+      "https://cdn.awsli.com.br/2500x2500/2374/2374926/produto/210441668/tesoura-cerca-viva-e-grama-78330125-tramontina-6-awmpgu.jpg"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Jardinagem",
+    "rating": 4.9
+  },
+  {
+    "id": 33,
+    "proprietarioId": 4,
+    "tipoFerramenta": "Carrinho de Mão",
+    "estadoDeUso": "Usado",
+    "descricao": "Carrinho de mão com capacidade para 100kg.",
+    "precoAluguel": 50,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Oeste",
+    "fotosURL": [
+      "https://chatuba.vtexassets.com/arquivos/ids/168796/Carrinho-de-Mao-Extraforte-Cinza-65L-Tramontina.jpg?v=637420122594670000"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Entrega disponível",
+    "categoria": "Jardinagem",
+    "rating": 4.6
+  },
+  {
+    "id": 34,
+    "proprietarioId": 3,
+    "tipoFerramenta": "Foice",
+    "estadoDeUso": "Novo",
+    "descricao": "Foice de aço com cabo de madeira.",
+    "precoAluguel": 35,
+    "disponibilidade": "Disponível",
+    "localizacao": "Zona Leste",
+    "fotosURL": [
+      "https://images.tcdn.com.br/img/img_prod/940470/foice_com_cabo_de_madeira_30cm_2637_1_dcadf6d3d1ad7c41e001fde6d2d7af90.jpg"
+    ],
+    "condicoesDeUso": "Bom",
+    "opcoesDeEntrega": "Retirada no local",
+    "categoria": "Jardinagem",
+    "rating": 4.8
+  }
+]
