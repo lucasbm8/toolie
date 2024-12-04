@@ -6,7 +6,7 @@ Tenha certeza de ter instalado o node versão 22.11.0
 
 Clonar o repositorio em algum lugar do seu pc e rodar.
 
-## Get started
+## Acesse o diretório em que foi clonado e dê os seguintes comandos, de preferência com permissão de administrador
 
 1.  ```bash
     npm install
